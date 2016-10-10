@@ -1,5 +1,14 @@
+import sun.java2d.pipe.SpanShapeRenderer;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Random;  /** This imports the random number generator */
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+
 
 /**
  * Created by Rob James on 26/09/2016.
@@ -7,421 +16,753 @@ import java.util.Random;  /** This imports the random number generator */
 public class JavaD90Feed {
     public static void main(String[] args) {
 
+        /** String Array for driving licence number */
+        final String[] dln = {
+                "SHAPT304148AL9TP",
+                "JAMES508124dr9HG",
+                "PETER503225TJ9JJ",
+                "PHILL201083G99RN",
+                "DYER9227093DM9XX",
+                "MORGA320116BB9MB",
+                "WILLI307030DM9HH",
+                "THOMA603314TD9RH",
+                "BETTS503227DM9LK",
+                "DAVIN410104NB9JJ",
+                "JENKS601235PD9GH",
+                "KERMA708037JJ9FV",
+                "DUDLE803045HI9GG",
+                "VENDU902034BJ9EN",
+                "NEWTO804206KK9LN",
+                "IP999804155BS9YY",
+                "BOE99604032LJ9JL",
+                "BALL9704218ZE9KS",
+                "BAZIL505032J99HX",
+                "AUROE606085K99HS",
+                "DAVIE703046WE9LA",
+                "BENDI912195CK9PQ",
+                "MANSO903145HG9JN",
+                "KINUN405167AT9CV",
+                "RICHA306175DD9MM",
+                "LOVEL805278G99KQ",
+                "MONKT802304D99JH",
+                "NEWBY205125DT9NA",
+                "HAMME506179m99KD",
+                "DAVIE401017M98GH",
+                "SISSO506189P99TP",
+                "MICHA310098DV9NH",
+                "SLIMJ904153J99RM",
+                "DEVON405139KH9FR",
+                "FERRA405063EH9JN",
+                "TOMLI705046RJ9HS",
+                "MEIND605025F99JR",
+                "DAISY809024RH9JJ",
+                "LUBLO511154PO9BN",
+                "MOWBY906258RJ9KK",
+                "LEONA904156E99IJ",
+                "DEBBI609314JB9JE",
+                "HARRI609035BB9JJ",
+                "LAZY9707045MT9JK",
+                "NEIFT504076RJ9KK",
+                "EIWKT405064RJ8NN",
+                "TOBY9705046RN9KK",
+                "MEOGN905145HT9KJ",
+                "NETOM605043LK9SN",
+                "MOMOM805038YH9JK",
+                "BOWLB304056JC9KH",
+                "NEEKT905040J99KI",
+                "SADIQ905089MK9FJ",
+                "MESMA605034TQ9NV",
+                "LABUT805073K99BV",
+                "TOTOU605025r99JK",
+                "UBUNT305067LK9FR",
+                "LINUX305079LK9NJ",
+                "APPLE507034SJ9HJ",
+                "ANDRO406179GO9IO",
+                "HELLO906175H99JW",
+                "CHILL604056T99JJ",
+                "ANDRE204056R99JK",
+                "HOLLO608098P99KH",
+                "GUMBA309045TB9JK",
+                "PEGAS709045RH9JI",
+                "PEWTA405076BE9MM",
+                "ALBRI607098G99MA",
+                "WESTO607045GB9MA",
+                "ALBRI508096B99ER",
+                "HOLA9507054BR9KL",
+                "TSE99609054SC9NG",
+                "OLIVE406239OR9NN",
+                "JAMES202205OR9JK",
+                "MOGFO905064KJ9ES",
+                "BETTY406079M99ER",
+                "BOWLB705065JH9JR",
+                "BERES506078I99KL",
+                "BEATY809056B99KE",
+                "ALISO509087TR9PO",
+                "ALBRI907087Z99AK",
+                "MADIS708098KS9FH",
+                "BOWYE904056KH9JS",
+                "COSSI512256JD9HE",
+                "WINFI305067HF9KK",
+                "GALLI703058JE9XE",
+                "GUTTU305067AC9JK",
+                "MESSI506034KE8LL",
+                "VANDE409245P99NE",
+                "CARVE804234KJ9NE",
+                "FRANI607035RJ8HE",
+                "BEST9506078GP9KL",
+                "FRANK709246FR9JK",
+                "NIKKI607047BR9GH",
+                "BRVLA604056N99KL",
+                "ALBIE806253NR9HE",
+                "BESTW507034M99LK",
+                "VIVIE906078BR9TH",
+                "ABAST406056TS9WE",
+                "PIQUE604056NH9KL",
 
-        String dln[] = new String[100]; /** String for driving licence number */
-        dln[0] = "SHAPT304148AL9TP ";
-        dln[1] = "JAMES508124dr9HG ";
-        dln[2] = "PETER503225TJ9JJ ";
-        dln[3] = "PHILL201083G99RN ";
-        dln[4] = "DYER9227093DM9XX ";
-        dln[5] = "MORGA320116BB9MB ";
-        dln[6] = "WILLI307030DM9HH ";
-        dln[7] = "THOMA603314TD9RH ";
-        dln[8] = "BETTS503227DM9LK ";
-        dln[9] = "DAVIN410104NB9JJ ";
-        dln[10] = "JENKS601235PD9GH ";
-        dln[11] = "KERMA708037JJ9FV ";
-        dln[12] = "DUDLE803045HI9GG ";
-        dln[13] = "VENDU902034BJ9EN ";
-        dln[14] = "NEWTO804206KK9LN ";
-        dln[15] = "IP999804155BS9YY ";
-        dln[16] = "BOE99604032LJ9JL ";
-        dln[17] = "BALL9704218ZE9KS ";
-        dln[18] = "BAZIL505032J99HX ";
-        dln[19] = "AUROE606085K99HS ";
-        dln[20] = "DAVIE703046WE9LA ";
-        dln[21] = "BENDI912195CK9PQ ";
-        dln[22] = "MANSO903145HG9JN ";
-        dln[23] = "KINUN405167AT9CV ";
-        dln[24] = "RICHA306175DD9MM ";
-        dln[25] = "LOVEL805278G99KQ ";
-        dln[26] = "MONKT802304D99JH ";
-        dln[27] = "NEWBY205125DT9NA ";
-        dln[28] = "HAMME506179m99KD ";
-        dln[29] = "DAVIE401017M98GH ";
-        dln[30] = "SISSO506189P99TP ";
-        dln[31] = "MICHA310098DV9NH ";
-        dln[32] = "SLIMJ904153J99RM ";
-        dln[33] = "DEVON405139KH9FR ";
-        dln[34] = "FERRA405063EH9JN ";
-        dln[35] = "TOMLI705046RJ9HS ";
-        dln[36] = "MEIND605025F99JR ";
-        dln[37] = "DAISY809024RH9JJ ";
-        dln[38] = "LUBLO511154PO9BN ";
-        dln[39] = "MOWBY906258RJ9KK ";
-        dln[40] = "LEONA904156E99IJ ";
-        dln[41] = "DEBBI609314JB9JE ";
-        dln[42] = "HARRI609035BB9JJ ";
-        dln[43] = "LAZY9707045MT9JK ";
-        dln[44] = "NEIFT504076RJ9KK ";
-        dln[45] = "EIWKT405064RJ8NN ";
-        dln[46] = "TOBY9705046RN9KK ";
-        dln[47] = "MEOGN905145HT9KJ ";
-        dln[48] = "NETOM605043LK9SN ";
-        dln[49] = "MOMOM805038YH9JK ";
-        dln[50] = "BOWLB304056JC9KH ";
-        dln[51] = "NEEKT905040J99KI ";
-        dln[52] = "SADIQ905089MK9FJ ";
-        dln[53] = "MESMA605034TQ9NV ";
-        dln[54] = "LABUT805073K99BV ";
-        dln[55] = "TOTOU605025r99JK ";
-        dln[56] = "UBUNT305067LK9FR ";
-        dln[57] = "LINUX305079LK9NJ ";
-        dln[58] = "APPLE507034SJ9HJ ";
-        dln[59] = "ANDRO406179GO9IO ";
-        dln[60] = "HELLO906175H99JW ";
-        dln[61] = "CHILL604056T99JJ ";
-        dln[62] = "ANDRE204056R99JK ";
-        dln[63] = "HOLLO608098P99KH ";
-        dln[64] = "GUMBA309045TB9JK ";
-        dln[65] = "PEGAS709045RH9JI ";
-        dln[66] = "PEWTA405076BE9MM ";
-        dln[67] = "ALBRI607098G99MA ";
-        dln[68] = "WESTO607045GB9MA ";
-        dln[69] = "ALBRI508096B99ER ";
-        dln[70] = "HOLA9507054BR9KL ";
-        dln[71] = "TSE99609054SC9NG ";
-        dln[72] = "OLIVE406239OR9NN ";
-        dln[73] = "JAMES202205OR9JK ";
-        dln[74] = "MOGFO905064KJ9ES ";
-        dln[75] = "BETTY406079M99ER ";
-        dln[76] = "BOWLB705065JH9JR ";
-        dln[77] = "BERES506078I99KL ";
-        dln[78] = "BEATY809056B99KE ";
-        dln[79] = "ALISO509087TR9PO ";
-        dln[80] = "ALBRI907087Z99AK ";
-        dln[81] = "MADIS708098KS9FH ";
-        dln[82] = "BOWYE904056KH9JS ";
-        dln[83] = "COSSI512256JD9HE ";
-        dln[84] = "WINFI305067HF9KK ";
-        dln[85] = "GALLI703058JE9XE ";
-        dln[86] = "GUTTU305067AC9JK ";
-        dln[87] = "MESSI506034KE8LL ";
-        dln[88] = "VANDE409245P99NE ";
-        dln[89] = "CARVE804234KJ9NE ";
-        dln[90] = "FRANI607035RJ8HE ";
-        dln[91] = "BEST9506078GP9KL ";
-        dln[92] = "FRANK709246FR9JK ";
-        dln[93] = "NIKKI607047BR9GH ";
-        dln[94] = "BRVLA604056N99KL ";
-        dln[95] = "ALBIE806253NR9HE ";
-        dln[96] = "BESTW507034M99LK ";
-        dln[97] = "VIVIE906078BR9TH ";
-        dln[98] = "ABAST406056TS9WE ";
-        dln[99] = "PIQUE604056NH9KL ";
+        };
 
-
-        String title[] = new String[9];      /** Array to stor titles */
-        title[0] = "Mr";
-        title[1] = "Mrs";
-        title[2] = "Miss";
-        title[3] = "Ms";
-        title[4] = "Dr";
-        title[5] = "Rev";
-        title[6] = "Sir";
-        title[7] = "Lady";
-        title[8] = "Lord";
+        /** String array for title */
+        final String[] title = {
+                "Mrs",
+                "Miss",
+                "Ms",
 
 
-        String firstName[] = new String[100]; /** Array to store first name(s) */
-        firstName[0] = "Alice Louise";
-        firstName[1] = "Amy";
-        firstName[2] = "Annabell Mary";
-        firstName[3] = "Andrew Lee";
-        firstName[4] = "Alistair";
-        firstName[5] = "Aurielia";
-        firstName[6] = "Anthony Peter";
-        firstName[7] = "Bruce";
-        firstName[8] = "Brian Michael";
-        firstName[9] = "Briony";
-        firstName[10] = "Baryan";
-        firstName[11] = "Bethan Louise";
-        firstName[12] = "Brenda";
-        firstName[13] = "Barbara";
-        firstName[14] = "Chris John";
-        firstName[15] = "Christine";
-        firstName[16] = "Catherine";
-        firstName[17] = "Caitlin Louise";
-        firstName[18] = "Christie";
-        firstName[19] = "Cooper";
-        firstName[20] = "Callum John";
-        firstName[21] = "Daniel";
-        firstName[22] = "Derek";
-        firstName[23] = "David John";
-        firstName[24] = "Destiny";
-        firstName[25] = "Delia";
-        firstName[26] = "Diana Louise";
-        firstName[27] = "Danielle";
-        firstName[28] = "Eric";
-        firstName[29] = "Ernie John";
-        firstName[30] = "Ethel Mary";
-        firstName[31] = "Estelle";
-        firstName[32] = "Francis";
-        firstName[33] = "Fred John";
-        firstName[34] = "Frank";
-        firstName[35] = "Fizel";
-        firstName[36] = "Graham";
-        firstName[37] = "Gareth";
-        firstName[38] = "Gemma";
-        firstName[39] = "Georgia";
-        firstName[40] = "George John";
-        firstName[41] = "Garry";
-        firstName[42] = "Hayley";
-        firstName[43] = "Harrison John";
-        firstName[44] = "Henry";
-        firstName[45] = "Harriet";
-        firstName[46] = "Herbert";
-        firstName[47] = "Hammad";
-        firstName[48] = "Ieuan";
-        firstName[49] = "Isabelle";
-        firstName[50] = "Ian";
-        firstName[51] = "Iolo";
-        firstName[52] = "James";
-        firstName[53] = "Janet Mary";
-        firstName[54] = "Julie";
-        firstName[55] = "Janine";
-        firstName[56] = "Jenna";
-        firstName[57] = "Justin";
-        firstName[58] = "Jacob John";
-        firstName[59] = "Katie";
-        firstName[60] = "Kris";
-        firstName[61] = "Katherine";
-        firstName[62] = "Kamal";
-        firstName[63] = "Kevin";
-        firstName[64] = "Kelvin";
-        firstName[65] = "Kylie Louise";
-        firstName[66] = "Lee";
-        firstName[67] = "Luke";
-        firstName[68] = "Luigi";
-        firstName[69] = "Liam";
-        firstName[70] = "Letisha Louise";
-        firstName[71] = "Larry";
-        firstName[72] = "Mark John";
-        firstName[73] = "Michael";
-        firstName[74] = "Mary Louise";
-        firstName[75] = "Morgan";
-        firstName[76] = "Misha Louise";
-        firstName[77] = "Matilda";
-        firstName[78] = "Nigel John";
-        firstName[79] = "Nathan";
-        firstName[80] = "Niamh";
-        firstName[81] = "Norris John";
-        firstName[82] = "Norman";
-        firstName[83] = "Neil";
-        firstName[84] = "Nora Mary";
-        firstName[85] = "Oliver";
-        firstName[86] = "Olivia";
-        firstName[87] = "Olaf";
-        firstName[88] = "Peter John";
-        firstName[89] = "Paula";
-        firstName[90] = "Prescilla";
-        firstName[91] = "Paul John";
-        firstName[92] = "Robert";
-        firstName[93] = "Richard";
-        firstName[94] = "Rachel Louise";
-        firstName[95] = "Sam";
-        firstName[96] = "Sarah Louise";
-        firstName[97] = "Ted";
-        firstName[98] = "Vivian";
-        firstName[99] = "William";
+        };
 
-        String lastName[] = new String[100]; /** Array to store last names */
-        lastName[0] = "Ahmed";
-        lastName[1] = "Allyson";
-        lastName[2] = "Ames";
-        lastName[3] = "Anthony";
-        lastName[4] = "Archibald";
-        lastName[5] = "Antolin";
-        lastName[6] = "Baker";
-        lastName[7] = "Baxter";
-        lastName[8] = "Bevan";
-        lastName[9] = "Bates";
-        lastName[10] = "Billard";
-        lastName[11] = "Caxton";
-        lastName[12] = "Cross";
-        lastName[13] = "Christie";
-        lastName[14] = "Caterham";
-        lastName[15] = "Daniels";
-        lastName[16] = "Devonald";
-        lastName[17] = "Diss";
-        lastName[18] = "Edwards";
-        lastName[19] = "Eisenhower";
-        lastName[20] = "Eccles";
-        lastName[21] = "Eddershaws";
-        lastName[22] = "Emilio";
-        lastName[23] = "Elena";
-        lastName[24] = "Francies";
-        lastName[25] = "Fellows";
-        lastName[26] = "Fell";
-        lastName[27] = "Ford";
-        lastName[28] = "Ferrara";
-        lastName[29] = "Gravelle";
-        lastName[30] = "Grant";
-        lastName[31] = "Gillespie";
-        lastName[31] = "Gutierrez";
-        lastName[32] = "Guttuso";
-        lastName[33] = "Graham";
-        lastName[34] = "Harris";
-        lastName[35] = "Harries";
-        lastName[36] = "Humphries";
-        lastName[37] = "Harrison";
-        lastName[38] = "James";
-        lastName[39] = "Jones";
-        lastName[40] = "John";
-        lastName[41] = "Johnson";
-        lastName[42] = "Jenkins";
-        lastName[43] = "Jenks";
-        lastName[44] = "Jukes";
-        lastName[45] = "Lamb";
-        lastName[46] = "Larkin";
-        lastName[47] = "Latham";
-        lastName[48] = "Lesley";
-        lastName[49] = "Large";
-        lastName[50] = "Leeder";
-        lastName[51] = "Leek";
-        lastName[52] = "Leonard";
-        lastName[53] = "Laferty";
-        lastName[54] = "Mabe";
-        lastName[55] = "MacDonald";
-        lastName[56] = "McKenzie";
-        lastName[57] = "Morrow";
-        lastName[58] = "Morgan";
-        lastName[59] = "Marsden";
-        lastName[60] = "Mann";
-        lastName[61] = "Macintosh";
-        lastName[62] = "McNeil";
-        lastName[63] = "McBrian";
-        lastName[64] = "Maggs";
-        lastName[65] = "Major";
-        lastName[66] = "Marlow";
-        lastName[67] = "Norris";
-        lastName[68] = "Neville";
-        lastName[69] = "Nikita";
-        lastName[70] = "Naylor";
-        lastName[71] = "Northcott";
-        lastName[72] = "Nichols";
-        lastName[73] = "Nash";
-        lastName[74] = "Neal";
-        lastName[75] = "Nunn";
-        lastName[76] = "Northwood";
-        lastName[77] = "North";
-        lastName[78] = "Newton";
-        lastName[79] = "O'riely";
-        lastName[80] = "O'Brian";
-        lastName[81] = "O'Malley";
-        lastName[82] = "Oates";
-        lastName[83] = "Oakley";
-        lastName[85] = "Owens";
-        lastName[86] = "Peters";
-        lastName[87] = "Phillips";
-        lastName[88] = "Roberts";
-        lastName[89] = "Richards";
-        lastName[90] = "Richardson";
-        lastName[91] = "Raddison";
-        lastName[92] = "Ritchie";
-        lastName[93] = "Sullivan";
-        lastName[94] = "Silva";
-        lastName[95] = "Smith";
-        lastName[96] = "Winfield";
-        lastName[97] = "Williamson";
-        lastName[98] = "Williams";
-        lastName[99] = "Young";
+        /** Array to store MALE first name(s) */
+        final String[] firstNameMale = {
+                "Andrew",
+                "Alistair",
+                "Anthony",
+                "Bruce",
+                "Brian",
+                "Callum",
+                "Daniel",
+                "Derek",
+                "David",
+                "Eric",
+                "Ernie",
+                "Francis",
+                "Fred",
+                "Frank",
+                "Fizel",
+                "Graham",
+                "Gareth",
+                "George",
+                "Garry",
+                "Harrison",
+                "Henry",
+                "Herbert",
+                "Hammad",
+                "Ieuan",
+                "Ian",
+                "Iolo",
+                "James",
+                "Justin",
+                "Jacob",
+                "Kris",
+                "Kamal",
+                "Kevin",
+                "Kelvin",
+                "Lee",
+                "Luke",
+                "Luigi",
+                "Liam",
+                "Larry",
+                "Mark",
+                "Michael",
+                "Morgan",
+                "Nigel",
+                "Nathan",
+                "Norris",
+                "Norman",
+                "Neil",
+                "Oliver",
+                "Olaf",
+                "Peter",
+                "Paul",
+                "Robert",
 
-        String provEntitlement[] = new String[9];                          /** Array for prov entitlements */
-        provEntitlement[0] = "A1 A B BE F K L N P";
-        provEntitlement[1] = "A A1 F K L N P";
-        provEntitlement[2] = "C1 F K L N P";
-        provEntitlement[3] = "D1 F K L N P";
-        provEntitlement[4] = "C F K L N P";
-        provEntitlement[5] = "D F K L N P";
-        provEntitlement[6] = "D1 D1E F K L N P";
-        provEntitlement[7] = "B BE F K L N P";
-        provEntitlement[8] = "B F K L N P";
-
-        String fullEntitlement[] = new String[9];                           /** Array for full entitlements */
-        fullEntitlement[0] = "A1";
-        fullEntitlement[1] = "A";
-        fullEntitlement[2] = "A B BE B1";
-        fullEntitlement[3] = "B BE B1 C1 C1E D1 D1E";
-        fullEntitlement[4] = "B D1";
-        fullEntitlement[5] = "B BE C1 C1E C CE";
-        fullEntitlement[6] = "D D1 D";
-        fullEntitlement[7] = "B BE";
-        fullEntitlement[8] = "B";
+        };
 
 
+        /** Array to store FEMALE first name(s) */
+        final String[] firstNameFemale = {
+                "Amy",
+                "Annabel",
+                "Aurielia",
+                "Briony",
+                "Bethan",
+                "Brenda",
+                "Barbara",
+                "Christine",
+                "Catherine",
+                "Caitlin",
+                "Christie",
+                "Destiny",
+                "Delia",
+                "Diana",
+                "Danielle",
+                "Ethel",
+                "Estelle",
+                "Francis",
+                "Gemma",
+                "Georgia",
+                "Hayley",
+                "Harriet",
+                "Isabelle",
+                "Janet",
+                "Julie",
+                "Janine",
+                "Jenna",
+                "Katie",
+                "Kris",
+                "Katherine",
+                "Kylie",
+                "Lee",
+                "Letisha",
+                "Mary",
+                "Misha",
+                "Matilda",
+                "Niamh",
+                "Nora",
+                "Olivia",
+                "Paula",
+                "Priscilla",
+                "Rachel",
+                "Sam",
+                "Sarah",
+                "Sibon",
+                "Tabitha",
+                "Rowena",
+                "Kirsty",
+                "Katrina",
+                "Vivian",
+        };
+
+
+        /** Array to store MALE middle name(s) */
+        final String[] middleNameMale = {
+                "Andre",
+                "Ali",
+                "Tony",
+                "",
+                "Christopher",
+                "",
+                "Daniel",
+                "Derek",
+                "David",
+                "Dall",
+                "",
+                "Ernie",
+                "Edwin",
+                "Frederick",
+                "Franz",
+                "",
+                "Graham",
+                "Gareth",
+                "George John",
+                "Gary",
+                "Harri",
+                "Henry",
+                "Herbert",
+                "",
+                "Ian",
+                "",
+                "Dave",
+                "James",
+                "Jack",
+                "Jacob John",
+                "",
+                "Kevin",
+                "Kelvin",
+                "Leigh",
+                "Luke",
+                "Leonard",
+                "Noel",
+                "Largo",
+                "Marc",
+                "Mikey",
+                "May",
+                "Mogford",
+                "",
+                "Nigel John",
+                "Norman",
+
+                "Paul John",
+                "Robert",
+                "Richard",
+                "Viv",
+                "Will",
+        };
+
+        /** Array to store FEMALE middle name(s) */
+        final String[] middleNameFemale = {
+                "Amy",
+                "Angharad",
+                "Alison",
+                "Betty",
+                "Blodwen",
+                "Beau",
+                "Chrystal",
+                "Cerry",
+                "Cariad",
+                "Delyth",
+                "Diana",
+                "Delia",
+                "Diane",
+                "Dorothy",
+                "Deborah",
+                "Carolie",
+                "Carly",
+                "Elleri",
+                "Francine",
+                "",
+                "Gemma",
+                "",
+                "Hazel",
+                "Harriett",
+                "",
+                "Izzy",
+                "Janet Mary",
+                "Julie",
+                "Hillary",
+                "Jennaveve",
+                "Kate",
+                "Krissy",
+                "Katherine",
+                "",
+                "Kylie Louise",
+                "Leigh",
+                "Louise",
+                "May",
+                "Jane",
+                "",
+                "",
+                "",
+                "Nora Mary",
+                "Olivia",
+                "",
+                "Paula",
+                "",
+                "Rachel Louise",
+                "Sam",
+                "Sara",
+                "Viv",
+        };
+
+        /** Array to store last names */
+        final String[] lastName = {
+                "Ahmed",
+                "Allyson",
+                "Ames",
+                "Anthony",
+                "Archibald",
+                "Antolin",
+                "Baker",
+                "Baxter",
+                "Bevan",
+                "Bates",
+                "Billard",
+                "Caxton",
+                "Cross",
+                "Christie",
+                "Caterham",
+                "Daniels",
+                "Devonald",
+                "Diss",
+                "Edwards",
+                "Eisenhower",
+                "Eccles",
+                "Eddershaws",
+                "Emilio",
+                "Elena",
+                "Francies",
+                "Fellows",
+                "Fell",
+                "Ford",
+                "Ferrara",
+                "Gravelle",
+                "Grant",
+                "Gillespie",
+                "Gutierrez",
+                "Guttuso",
+                "Graham",
+                "Harris",
+                "Harries",
+                "Humphries",
+                "Harrison",
+                "James",
+                "Jones",
+                "John",
+                "Johnson",
+                "Jenkins",
+                "Jenks",
+                "Jukes",
+                "Lamb",
+                "Larkin",
+                "Latham",
+                "Lesley",
+                "Large",
+                "Leeder",
+                "Leek",
+                "Leonard",
+                "Laferty",
+                "Mabe",
+                "MacDonald",
+                "McKenzie",
+                "Morrow",
+                "Morgan",
+                "Marsden",
+                "Mann",
+                "Macintosh",
+                "McNeil",
+                "McBrian",
+                "Maggs",
+                "Major",
+                "Marlow",
+                "Norris",
+                "Neville",
+                "Nikita",
+                "Naylor",
+                "Northcott",
+                "Nichols",
+                "Nash",
+                "Neal",
+                "Nunn",
+                "Northwood",
+                "North",
+                "Newton",
+                "O'riely",
+                "O'Brian",
+                "O'Malley",
+                "Oates",
+                "Oakley",
+                "Owens",
+                "Peters",
+                "Phillips",
+                "Roberts",
+                "Richards",
+                "Richardson",
+                "Raddison",
+                "Ritchie",
+                "Sullivan",
+                "Silva",
+                "Smith",
+                "Winfield",
+                "Williamson",
+                "Williams",
+                "Young",
+
+        };
+
+        /** Array for prov entitlements */
+        final String[] provEntitlement = {
+                "A1 A B BE F K L N P",
+                "A A1 BE F K L N P",
+                "C1 F K L N P",
+                "D1 F K L N P",
+                "C1 F K L N P",
+                "D F K L N P",
+                "B F K L N P",
+                "F K L N P",
+                "D1E F K L N P",
+        };
+
+
+        /** Array for full entitlements */
+        final String[] fullEntitlement = {
+                "Null",
+                "B",
+                "A B BE",
+                "B BE B1 C1 C1E",
+                "B D1",
+                "B BE C1 C1E C CE",
+                "A",
+                "B BE",
+                "A B D1",
+        };
+
+
+        /** Creating random number generator in main */
+        Random ranNumGen = new Random();
+        /** Declaring the counter variable for use in a while loop */
+        int counter = 0;
+        /**Importing random date function*/
 
 
 
 
 
+        /** String array for test pass category & date */
+        final String[] testPass = {
+                "Null",
+                "B",
+                "A B BE",
+                "B BE B1 C1 C1E",
+                "B D1",
+                "B BE C1 C1E C CE",
+                "A",
+                "B BE",
+                "A B D1",
+        };
 
+        /** String array for place of birth */
+        final String[] birthPlace = {
+                "Wales",
+                "England",
+                "Scotland",
+                "Northern Ireland",
+                "United Kingdom",
+                "Spain",
+                "USA",
+                "Great Britain",
+                "Australia",
+        };
 
+        // Open the address file
+        // Check valid path
+        String csvFilePath = "C:\\Work Docs\\Java Code Drivers PoC\\Address Data\\valid_addresses.csv";
+        String line;
+        String delimiter = ",";
+        BufferedReader br;
 
-        Random ranNumGen = new Random ();                                                                      /** Creating random number generator */
-        int counter = 0;                                                                                       /** Declaring the counter variable for use in a while loop */
-
-        RandomDate RandomDateObject = new RandomDate();
-
-
-        LicDates LicDatesObject = new LicDates();
-
-
-
-
-
-        String[] testPass = new String[10];
-        testPass[0] = "B - 12.04.93";
-        testPass[1] = "A - 19.01.14";
-        testPass[3] = "D - 22.03.03";
-        testPass[4] = "C - 10.12.76";
-        testPass[5] = "D1 - 31.09.66";
-        testPass[6] = "C1E - 13.06.49";
-        testPass[7] = "BE - 27.07.58";
-        testPass[8] = "D1E - 10.10.02";
-        testPass[9] = "F - 11.05.99";
-
-
-
-
-
-
+        try {
+            br = new BufferedReader(new FileReader(csvFilePath));
+            line = br.readLine();
+        }
+        catch (IOException e)
+        {
+            System.out.println("There was a problem opening the address file: " + e.getMessage());
+            br = null;
+        }
 
 
 
         /** While loop outputting all data ****************************************************************************** */
 
 
+        while (counter < 20) {          /** #start of While loop to generate X number of records */
 
 
-
-        while (counter < 10) {                                                                                 /** While loop to generate X number of records */
-            int randNumDln = ranNumGen.nextInt(99);                                                               /** Declaring the variable which holds the random number and setting it to generate numbers up to 99 */
-            int randNumFn = ranNumGen.nextInt(99);
+            int randNumDln = ranNumGen.nextInt(99);/** Declaring the variable which holds the random number and setting it to generate numbers up to 99 */
+            int randNumMn = ranNumGen.nextInt(50); //Middle Name random generator
+            int randNumMale = ranNumGen.nextInt(50);
+            int randNumFemale = ranNumGen.nextInt(50);
+            //int randNumFn = ranNumGen.nextInt(99);
             int randNumLn = ranNumGen.nextInt(99);
+            int randNumPoB = ranNumGen.nextInt(9);
             int randNumBool = ranNumGen.nextInt(2);                                                               /** generating a second random number */
-            int randNumTitle = ranNumGen.nextInt(9);
+            int randNumTitle = ranNumGen.nextInt(3);
             int randNumProv = ranNumGen.nextInt(9);
-            int randNumFull = ranNumGen.nextInt(9);
-            int randNumTp = ranNumGen.nextInt(9);
-            int gender = randNumBool;
+            int randNumFull;
+            int randNumTp;
+            //int gender = randNumBool;
             int organDonation = randNumBool;
 
-            String DoB = RandomDateObject.simpleMessage();
-            String issueDate = LicDatesObject.simpleMessage2();
-            String expiryDate = LicDatesObject.simpleMessage2();
-            String photoExpDate = LicDatesObject.simpleMessage2();
+            String firstName;
+            String mddleName;
+            String surName;
+            String gender;
+            String Title;
+
+
+            Date DoB = LicDates.RandomDate(1920,1999);
+            Date issueDate = LicDates.RandomDate(2010,2015);
+            Date expiryDate = LicDates.RandomDate(2016,2026);
+            Date photoExpDate = LicDates.RandomDate(2016,2026);
+
+
+            randNumFull = randNumProv;
+            randNumTp = randNumProv;
+
+
+
+            if (randNumBool == 0) {
+                firstName = firstNameMale[randNumMale];
+                mddleName = middleNameMale[randNumMn];
+                gender = "M";
+            }
+            else {
+                firstName = firstNameFemale[randNumFemale];
+                mddleName = middleNameFemale[randNumMn];
+                gender = "F";
+            }
+
+            if (gender == "M") {
+                Title = "Mr";
+            }
+            else {
+                Title = title[randNumTitle];
+            }
+
+            // Get an address line
+            line = "";
+            try {
+                line = br.readLine();
+            }
+            catch (IOException e) {
+                System.out.println("There was a problem reading a line from the address file: " + e.getMessage());
+            }
+
+            // Split the line into an array
+            String[] col = line.split(delimiter);
+
+            // Reads the array into separate strings
+            String line1 = col[0];
+            String line2 = col[1];
+            String line3 = col[2];
+            String line4 = col[3];
+            String posttown = col[4];
+            String postcode = col[5];
+            // Additional IEP Address Fields
+            String Country; // could reuse country of birth array?
+            String langCode;
+            String pafKey;
+            String orgName;
+            String buildingNumber;
+            String buildingName;
+            String subBuildingName;
+            String tfare;
+            String dtfair;
+            String ddtfare;
+            String dLocality;
+            String ddLocality;
+            //post Town;
+            String County;
+            //String postCode;
+            String poBox;
+            String mBarracks;
+            String mBFPONumber;
+            String mRank;
+            String mRegiment;
+            String mServiceNumber;
+            String mUnit;
+            String Type;
+            Date validFrom = LicDates.RandomDate(1983,2015);
+            Date validTo = LicDates.RandomDate(2015,2016);
+            String vanityInfo;
+            List<String> uLine;
+            String uPostCode;
+            String value;  //Used ind public enum AddressType
+            String valueName;  //Used ind public enum AddressType
+            // End of IEP Address Variables;
+
+            // IEP's Birth Details variables
+            String verificationLevelBirthDateCode;
+            String verificationLevelBirthDateName;
+            //Date getDate();
+            // End of IEP's Birth Details Variables
+
+            // IEP's Certificate of Professional Competence Variables
+            String creatingReasonCode;
+            String updatingReasonCode;
+            Date recordvalidFrom;
+            Date recordvalidTo;
+            Date LGVValidFrom;
+            Date PCVValidFrom;
+            Date PCVValidTo;
+            //End of IEP's Certificate of Professional Competence Variables
+
+            // IEP's Conduct Case Variables
+            Date decisionDate;
+            String letterType;
+            String letter;
+            String lgvLGVAppealResult;
+            String LGVOutcome;
+            Date LGVRevocationValidFrom;
+            Date LGVRevocationValidTo;
+            String PCVAppealResult;
+            String PCVOutcome;
+            Date PCVRecovationValidFrom;
+            Date PCVRevocationValidTo;
+            String publicEnquiryStatusType;
+            Date startDate;
+            String statusType;
+            int TAOPartyID;
+            //List<ConductCaseEvent> events;   //needs to be uncommented
+            //End of IEP Conduct Case Variables
+
+            // IEP's Conduct Case Event Variables        ARE THESE VARIABLES OR ARE THEY ACTUALLY CLASSES?
+            Date eventDate;
+            String eventType;
+            String nonEndorsableOffence;
+            //Date getEventDate();      //Needs uncommenting
+            //End of IEP Conduct Case Variables
+
+            // IEP Country Variables
+            String name;
+            String Code;
+            String internalName;
+            String internalCode;
+            //public String getName();
+            //End of IEP Variables
+
+            // IEP Death details Variables
+            Date deathDate;
+            String verificationLevelDeathDateCode;
+            // END
+
+            // IEP Disqualification Variables
+            Date disqDate;
+            Date disqFromDate;
+            Date disqToDate;
+            Boolean forLife;
+            int endorsementID;
+            Boolean concurrent;
+            String type;
+            Date disqvalidFrom;
+            Date disqvalidTo;
+            //End
+
+            // IEP Driver Variables
+            // List<DriverNumber> driverNumberHistory;       NEEDS UNCOMMENTING
+            // List<DrierFlag> flags;                        "
+            // private Licence licence;
+            // private DriverStatus status;
+            // private DriverStatedFlags driverStatedFlags
+            Date firstProvisionalDate;
+            Date DisqualifiedUntilDate;
+            // private disqualificationUntilType disqualifiedUntilType;
+            String HROType;
+            // List<ConductCase> ConductCases;
+            // private Disqualification matchedDisqualification;
+            // List<Disqualification> disqualifications;
+            // List<TachoCard> tachoCards;
+            //List<CertificateOfProfessionalCompetence> CPCs;
+            // List<DriverQualificaitonCard> DQCs;
+            // List<TestPass> testPasses;
+            // List<String> errorCodes;
+            Boolean nslInCorruptedRange;
+            // List<LicenceToken> licenceTokens;
+            Boolean blockedRecord = false;
+            String deltaFileName;
+            Date CreationTime;
 
 
 
 
 
-            System.out.println( dln[randNumDln] + " / " + title[randNumTitle] + " / " + firstName[randNumFn] + " / " + lastName[randNumLn] + " / " + DoB + " / " + (gender == 0 ? "M" : "F") + " / " + "United Kingdom" + " / " + (organDonation == 0 ? "Y" : "N") + " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv] + " / " + issueDate + " / " + expiryDate + " / " + photoExpDate + " / ");             /** Printing a record to screen */
-            counter++;                                                                                         /** adding 1 to the counter */
+
+
+
+
+
+
+
+                System.out.println( dln[randNumDln] + " / " + Title + " / " +
+                    firstName + " "+ mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() +
+                    " / " + gender + " / " + birthPlace[randNumPoB] + " / " + line1 + "," + line2 + "," + posttown + "," + postcode + " / " + (organDonation == 0 ? "Y" : "N") +
+                    " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
+                        + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
+
+            /** adding 1 to the counter */
+            counter++;
+
+
         }
-
-
-
     }
+
 }
 
