@@ -3,11 +3,12 @@ import sun.java2d.pipe.SpanShapeRenderer;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;  /** This imports the random number generator */
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import java.util.jar.Attributes;
 
 
 /**
@@ -492,9 +493,6 @@ public class JavaD90Feed {
         /**Importing random date function*/
 
 
-
-
-
         /** String array for test pass category & date */
         final String[] testPass = {
                 "Null",
@@ -521,6 +519,43 @@ public class JavaD90Feed {
                 "Australia",
         };
 
+        // IEP Country Variables
+        final String countryCode[] = {
+                "Cym",
+                "Eng",
+                "Sco",
+                "NI",
+                "UK",
+                "Esp",
+                "USA",
+                "GB",
+                "Oz"
+        };
+        final String countryInternalName[] = {
+                "Wales",
+                "England",
+                "Scotland",
+                "Northern Ireland",
+                "United Kingdom",
+                "Spain",
+                "USA",
+                "Great Britain",
+                "Australia",
+
+        };
+        String countryInternalCode[] = {
+                "5",
+                "6",
+                "4",
+                "3",
+                "1",
+                "19",
+                "7",
+                "2",
+                "15",
+        };
+        //End of IEP Country Variables
+
         // Open the address file
         // Check valid path
         String csvFilePath = "C:\\Work Docs\\Java Code Drivers PoC\\Address Data\\valid_addresses.csv";
@@ -531,13 +566,513 @@ public class JavaD90Feed {
         try {
             br = new BufferedReader(new FileReader(csvFilePath));
             line = br.readLine();
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println("There was a problem opening the address file: " + e.getMessage());
             br = null;
         }
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date todaydate = new Date();
+
+
+        // **********************   IEP Variables **********************************************************
+
+
+        // Additional IEP Address Fields
+        final String[] Country = {
+                "England",
+                "Wales",
+                "Scotland",
+                "Northern Ireland"
+        };
+
+        final String[] langcode = {
+                "Eng",
+                "Eng",
+                "Eng",
+                "Eng",
+                "Eng",
+                "Cym",
+        };
+
+        String pafKey = "";
+        String orgName = "";
+        String tfare = "";
+        String dtfare = "";
+        String ddtfare = "";
+        String dLocality = "";
+        String ddLocality = "";
+        String poBox; // initialised in Military Address Class
+        String mBarracks; // initialised in Military Address Class
+        String mBFPONumber; // initialised in Military Address Class
+        String mRank; // initialised in Military Address Class
+        String mRegiment; // initialised in Military Address Class
+        String mServiceNumber; // initialised in Military Address Class
+        String mUnit; // initialised in Military Address Class
+        String Type; // initialised in Military Address Class
+        Date addressvalidFrom = LicDates.RandomDate(1983, 2015);
+        Date addressvalidTo = todaydate;
+        String vanityInfo = "";
+        List<String> uLine;
+        String uPostCode = "";
+        String value = "ABC123";
+        String valueName = "Value A";
+        // End of IEP Address Variables;
+
+        // IEP's Birth Details variables
+        final String[] verificationLevelBirthDateCode = {
+                "B",
+                "p",
+                "NI",
+                "O",
+        };
+        final String[] verificationLevelBirthDateName = {
+                "Birth Certificate",
+                "Passport",
+                "National Insurance Number",
+                "Other",
+        };
+        // End of IEP's Birth Details Variables
+
+        // IEP's Certificate of Professional Competence Variables
+        String creatingReasonCode = "Issued";
+        final String[] updatingReasonCode = {
+                "Renewal",
+                "First Issue",
+                "Duplicate",
+        };
+        Date recordvalidFrom = LicDates.RandomDate(2014, 2015);
+        Date recordvalidTo = LicDates.RandomDate(2019, 2023);
+        Date LGVValidFrom = LicDates.RandomDate(1989, 2013);
+        Date PCVValidFrom = LicDates.RandomDate(1983, 2013);
+        Date PCVValidTo = LicDates.RandomDate(2016, 2025);
+        //End of IEP's Certificate of Professional Competence Variables
+
+        // IEP's Conduct Case Variables
+        Date decisionDate = LicDates.RandomDate(1999, 2015);
+        final String letterType[] = {
+                "War",
+                "Pen",
+                "Sum",
+                "NFA",
+        };
+        final String letter[] = {
+                "Warning",
+                "Pending",
+                "Summons to attend",
+                "No Further Action",
+        };
+        final String lgvLGVAppealResult[] = {
+                "Up Held";
+                "Further Sentence Passed",
+                "Decision Overturned",
+        }
+        final String LGVOutcome []= {
+                "Sentence Remains",
+                "Further Revocation Period",
+                "Original Decision Overturned",
+        };
+        Date LGVRevocationValidFrom = LicDates.RandomDate(2013, 2015);
+        Date LGVRevocationValidTo = LicDates.RandomDate(2015, 2016);
+        String PCVAppealResult = "";
+        String PCVOutcome = "";
+        Date PCVRecovationValidFrom;
+        Date PCVRevocationValidTo;
+        String publicEnquiryStatusType = "";
+        Date startDate;
+        String statusType = "";
+        int TAOPartyID = 41268;
+        //List<ConductCaseEvent> events;   //needs to be uncommented
+        //End of IEP Conduct Case Variables
+
+        // IEP's Conduct Case Event Variables        ARE THESE VARIABLES OR ARE THEY ACTUALLY CLASSES?
+        Date eventDate = LicDates.RandomDate(2014, 2016);
+        String eventType = "Revocation";
+        String nonEndorsableOffence = "";
+        Date ConCaseDate = todaydate;
+        //End of IEP Conduct Case Variables
+
+
+        // IEP Death details Variables
+        Date deathDate;
+        String verificationLevelDeathDateCode = "";
+        // END
+
+        //IEP Endorsement Variables
+        final int endorsementID[] = {
+                1,
+                2,
+                3,
+                4,
+                15,
+                28,
+                73,
+
+        };
+        final int disqual[] = {
+                0,
+                1,
+        };
+        final String endorsementCode[] = {
+            "AC10",
+            "BA10",
+            "CD30",
+            "DR10",
+            "DR60",
+            "IN10",
+            "MS30",
+        };
+        final String convictingCourt[] = {
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+            "MoJC15",
+        };
+        Date offence = LicDates.RandomDate(2008, 2010);
+        Date expires = LicDates.RandomDate(2011, 2012);
+        Date removed = expires;
+        Date conviction = LicDates.RandomDate(2009, 2011);
+        Date sentencing = conviction;
+        final String duration[] = {
+                "12 mo",
+                "18 mo",
+                "17 mo",
+                "24 mo",
+        };
+        final Double fine[] = {
+                194.65,
+                2000.00,
+                1000.00,
+                1567.93,
+        } ;
+        String fineCurrency = "£";
+        String rehabilitated;
+        final int noPoints[] ={
+                3,
+                6,
+                10,
+                7,
+        } ;
+
+        String AlcoholLevel;
+        String alcoholTestType;
+        String appealCourt;
+        Date disqualReIm;
+        Date disqualRemov;
+        Date disqualSusPA;
+        String sentencingcourt;
+        String susPrisonSentenceDur;
+        String custodialPeriod;
+        Date indicativeRehabSpentDate;
+        //Boolean nonEndorsableOffence;    says this is already declared somewhere else
+        //End
+
+        // IEP Disqualification Variables
+        Date disqDate = LicDates.RandomDate(2010, 2013);
+        Date disqFromDate = disqDate;
+        Date disqToDate = LicDates.RandomDate(2014, 2017);;
+        //Boolean forLife;
+        int endorsementID ;
+        Boolean concurrent;
+        String type;
+        Date disqvalidFrom;
+        Date disqvalidTo;
+        //End
+
+        // IEP Driver Variables
+        // List<DriverNumber> driverNumberHistory;       NEEDS UNCOMMENTING
+        // List<DrierFlag> flags;                        "
+        // private Licence licence;
+        // private DriverStatus status;
+        // private DriverStatedFlags driverStatedFlags
+        Date firstProvisionalDate;
+        Date DisqualifiedUntilDate;
+        // private disqualificationUntilType disqualifiedUntilType;
+        String HROType;
+        // List<ConductCase> ConductCases;
+        // private Disqualification matchedDisqualification;
+        // List<Disqualification> disqualifications;
+        // List<TachoCard> tachoCards;
+        //List<CertificateOfProfessionalCompetence> CPCs;
+        // List<DriverQualificaitonCard> DQCs;
+        // List<TestPass> testPasses;
+        // List<String> errorCodes;
+        Boolean nslInCorruptedRange;
+        // List<LicenceToken> licenceTokens;
+        Boolean blockedRecord = false;
+        String deltaFileName;
+        Date CreationTime;
+        // End of IEP Variables Driver
+
+        // Start of IEP DriverFlag Variables
+        String flag;
+        Date driverFlagValidFrom;
+        Date driverFlagValidTo;
+        Boolean manual;
+        Boolean caseType;
+        //End of DriverFlag variables;
+
+        // IEP Driver Number Variables
+        String id;
+        Attributes.Name drivername;
+        Date drivernumValidFrom;
+        Date drivernumValidTo;
+        //End
+
+        // IEP Variables DriversQualificationCard
+        int communityCode;
+        int dispatchedToAddressID;
+        int photoImageID;
+        String reasonRequested;
+        int signatureImageID;
+        String driverNumber;
+        String dqcfirstName;
+        String dqcsurname;
+        Date dqcDob;
+        String dqcbirthPlace;
+        //End
+
+        //IEP Variables DriversStatedFlags
+        Boolean duplicateOfLicence;
+        Boolean exchangeOfLicence;
+        Boolean higherFeePaid;
+        Boolean onYoungDriverScheme;
+        Boolean lifeFeePaid;
+        Boolean medicalInvestigationRequiredForMedicalIssue;
+        Boolean ordinaryMedicalInvestigaitonInProgress;
+        Boolean ordinaryMedicalDeclerationMade;
+        Boolean ordinaryMedicalPapersHled;
+        String photoInvitationSent;
+        Boolean receivesMobilityallowance;
+        Boolean restrictedAsSpecifiedInSecretaryOfStateNotice;
+        Boolean sightCorrectionRequired;
+        Boolean vocationalMedicalPapersHeld;
+        Boolean vocationalMedicalInvestigationInProgress;
+        Boolean excessEndorsements;
+        Boolean disqualified;
+        Boolean dttp;
+        Boolean rttp;
+        Boolean dtetp;
+        Boolean bretEntitlementStatus;
+        Boolean notRetainedC1D1EntitlementStatus;
+        Boolean retainedC1D1EntitlementStatus;
+        Boolean withheldC1D1Entitlements;
+        Boolean erroneouslyRevokedEntitlementStatus;
+        Boolean medicalRestrictionPeriodEntitlementStatus;
+        //END
+
+        //IEP DriverStatus Variables
+        String driverStatusCode;
+        String driverStatusName;
+        //End
+
+        // IEP ElectronicAddress Variables
+        String electronicAddress;
+        //End
+
+        /
+
+        // IEP Entitlement Variables
+        String entitlementCode;
+        Date entitlementValidFrom;
+        Date entitlementValidTo;
+        Boolean provisional = null;
+        Boolean priorTo = null;
+        //List<EneitlementRestriction> restrictions;
+        Boolean vocational;
+        //List<Entitlementstauts> statuses;
+        //End
+
+        // IEP EntitlementRestriction Variables
+        String EntitlRestCode;
+        String EntitlRestText;
+        String EntitlRestcategoryCode;
+        Date entitlRestValidTo;
+        //End
+
+        // IEP EntitlementStatus Variables
+        String entitlStatusCode;
+        String entitlStatusName;
+        Date entitlStatusValidFrom;
+        Date entitlStatusValidTo;
+        Boolean entitlStatusPriorTo;
+        //End
+
+        // IEP ForeignLicence Variables
+        //Country country;
+        String countryNumber;
+        //End
+
+        //IEP Image Variables
+        Date imageCaptureDate;
+        String imageFormat;
+        int imageID;
+        String imageOrigin;
+        String imageType;
+        Date imageValidFrom;
+        Date imageValidTo;
+        //End
+
+        // IEP Licence Variables
+        Date licenceValidFrom;
+        Date licenceValidTo;
+        int directiveStatus;
+        Date administrativeVlaidityPeriodStartDate;
+        Date cardExpiryDate;
+        int numEndorsements;
+        Date originalPhotoExpiryDate;
+        Date photoExpiryDate;
+        String regimeType;
+        String currentIssueNumber;
+        //List<Eneitlement> entitlements;
+        //List<Endorsement> endorsement;
+        //List<LicenceInformation> information;
+        //List<Licencetoken> tokens;
+        //End
+
+        //IEP LicenceInformation Variables
+        String licinfoTypeCode;
+        String licinfoTypeName;
+        //End
+
+        //IEP licenceToken Variables
+        String counterPartIssueNumberSuffix;
+        //licenceTokenStatus currentStatus;
+        Date dateofIssue;
+        String issueNumber;
+        String issuingAuthority;
+        String languageType;
+        String paperdocumentNumber;
+        String photocardBarCodeNumber;
+        String licTokenTypeCode;
+        String licTokenType;
+        Boolean cancelled;
+        Boolean claimed;
+        String cardNum;
+        Date lictokenValidFrom;
+        Date licTokenValidTo;
+        //End
+
+        //IEP LicenceTokenStaus Variables
+        String licTokStatusCode;
+        String licTokStatusValue;
+        //End
+
+        // IEP Message Variables
+        String messageKey;
+        String messageDescription;
+        Boolean error;
+        int messageType;
+        // private object extra;
+        //End
+
+        // IEP Name vairables
+        String nametitle = null;
+        //List<String> givenName = null;
+        String familyName = null;
+        Boolean istitleAddress = false;
+        String initials = null;
+        //End
+
+        // IEP NysiisKeys Variables
+        //String NysiisKeys familyName, givenname;
+        //End
+
+        //IEP Organisaiton Variables
+        String organisationName;
+        String organisaitonType;
+        Date organisationValidFrom;
+        Date organisaitonValidTo;
+        //End
+
+        //IEP OtherSentence Variables
+        String othersentCode;
+        String otherSentName;
+        String othersentDuration;
+        //End
+
+        //IEP Passport Variables
+        String passportNumber;
+        Date passportExpiryDate;
+        Date passportIssueDate;
+        //End
+
+        //IEP Person Variables;
+        String partyID;
+        //Private Passport passport = null;
+        //private Birthdetails birthdetails;
+        //Private Address address;
+        //Private Name name;
+        int persongender;
+        Date personValidFrom;
+        Date personValidTo;
+        Boolean adi;
+        Boolean Military;
+        Boolean foreignLicenceOffender;
+        String agencyNotifiedEmigrationCountry;
+        //List<ElectronicAddress> electronicAddresses = null;
+        //List<Image> images;
+        Boolean highRiskOffender;
+        Boolean organDonor;
+        //Country nationality;
+        String personNotifiedEmigrationCountry;
+        //List<Telephone> telephones;
+        String preferredLanguage;
+        String verificationLevelIdentityCode;
+        String verificaitonLevelIdentityName;
+        //private NysiisKeys nysiiskeys;
+        //End
+
+        //IEP Rules Driver Variables
+        String RulesdriverNumber;
+        //Driver driver;
+        //List<Messages> messages;
+        String ruleApplied;
+        Boolean fullySuppressed;
+        //optional<String> supressionReason = optional.absent();
+        //End
+
+        //IEP ServiceResult Variables
+        String guid;
+        String version;
+        Date serviceDate;
+        //private T result;
+        //End
+
+        //IEP TachoCard Variables
+        //List<String> dispatchAddressLines;
+        String dispatchpostCode;
+        int foreignDrivingLicenceID;
+        String MSCode;
+        String MSTTachoNumber;
+        String tachoCardNumber;
+        int postalAddressID;
+        String tachoCardType;
+        int VOSAPartyID;
+        int workshopID;
+        String workshopNameOnCard;
+        //End
+
+        //IEP Telephone Variables
+        String telephoneNumber;
+        int contactType;
+        //End
+
+        //IEP TestPass Variables
+        String entitlementType;
+        String TPstatusType;
+        Date testPassDate;
+        Boolean extended;
+        Boolean harmonised;
+        Boolean automatic;
+        Boolean lessThanEqual25kw;
+        Date TPexpiryDate;
+        //End
 
 
         /** While loop outputting all data ****************************************************************************** */
@@ -550,12 +1085,19 @@ public class JavaD90Feed {
             int randNumMn = ranNumGen.nextInt(50); //Middle Name random generator
             int randNumMale = ranNumGen.nextInt(50);
             int randNumFemale = ranNumGen.nextInt(50);
-            //int randNumFn = ranNumGen.nextInt(99);
             int randNumLn = ranNumGen.nextInt(99);
             int randNumPoB = ranNumGen.nextInt(9);
             int randNumBool = ranNumGen.nextInt(2);                                                               /** generating a second random number */
             int randNumTitle = ranNumGen.nextInt(3);
             int randNumProv = ranNumGen.nextInt(9);
+            int randNumMilitary = ranNumGen.nextInt(75);
+            int randNumLang = ranNumGen.nextInt(6);
+            int randNumVerifLvl = ranNumGen.nextInt(4);
+            int randNumCreatingReason = ranNumGen.nextInt(3);
+            int randNumEndorse = ranNumGen.nextInt(7);
+            int RandNumIsDisqual = ranNumGen.nextInt(2);
+
+
             int randNumFull;
             int randNumTp;
             //int gender = randNumBool;
@@ -568,23 +1110,21 @@ public class JavaD90Feed {
             String Title;
 
 
-            Date DoB = LicDates.RandomDate(1920,1999);
-            Date issueDate = LicDates.RandomDate(2010,2015);
-            Date expiryDate = LicDates.RandomDate(2016,2026);
-            Date photoExpDate = LicDates.RandomDate(2016,2026);
+            Date DoB = LicDates.RandomDate(1920, 1999);
+            Date issueDate = LicDates.RandomDate(2010, 2015);
+            Date expiryDate = LicDates.RandomDate(2016, 2026);
+            Date photoExpDate = LicDates.RandomDate(2016, 2026);
 
 
             randNumFull = randNumProv;
             randNumTp = randNumProv;
 
 
-
             if (randNumBool == 0) {
                 firstName = firstNameMale[randNumMale];
                 mddleName = middleNameMale[randNumMn];
                 gender = "M";
-            }
-            else {
+            } else {
                 firstName = firstNameFemale[randNumFemale];
                 mddleName = middleNameFemale[randNumMn];
                 gender = "F";
@@ -592,8 +1132,7 @@ public class JavaD90Feed {
 
             if (gender == "M") {
                 Title = "Mr";
-            }
-            else {
+            } else {
                 Title = title[randNumTitle];
             }
 
@@ -601,8 +1140,7 @@ public class JavaD90Feed {
             line = "";
             try {
                 line = br.readLine();
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 System.out.println("There was a problem reading a line from the address file: " + e.getMessage());
             }
 
@@ -616,129 +1154,26 @@ public class JavaD90Feed {
             String line4 = col[3];
             String posttown = col[4];
             String postcode = col[5];
-            // Additional IEP Address Fields
-            String Country; // could reuse country of birth array?
-            String langCode;
-            String pafKey;
-            String orgName;
-            String buildingNumber;
-            String buildingName;
-            String subBuildingName;
-            String tfare;
-            String dtfair;
-            String ddtfare;
-            String dLocality;
-            String ddLocality;
-            //post Town;
-            String County;
-            //String postCode;
-            String poBox;
-            String mBarracks;
-            String mBFPONumber;
-            String mRank;
-            String mRegiment;
-            String mServiceNumber;
-            String mUnit;
-            String Type;
-            Date validFrom = LicDates.RandomDate(1983,2015);
-            Date validTo = LicDates.RandomDate(2015,2016);
-            String vanityInfo;
-            List<String> uLine;
-            String uPostCode;
-            String value;  //Used ind public enum AddressType
-            String valueName;  //Used ind public enum AddressType
-            // End of IEP Address Variables;
 
-            // IEP's Birth Details variables
-            String verificationLevelBirthDateCode;
-            String verificationLevelBirthDateName;
-            //Date getDate();
-            // End of IEP's Birth Details Variables
+            //**IEP Military Variables IF statement**
+            MilitaryAddress militaryAddress = new MilitaryAddress();
+            if (randNumMilitary == 0) {
+                militaryAddress.randomise();
+            }
 
-            // IEP's Certificate of Professional Competence Variables
-            String creatingReasonCode;
-            String updatingReasonCode;
-            Date recordvalidFrom;
-            Date recordvalidTo;
-            Date LGVValidFrom;
-            Date PCVValidFrom;
-            Date PCVValidTo;
-            //End of IEP's Certificate of Professional Competence Variables
+            if (randNumProv == 4) {
+                // IEP's Certificate of Professional Competence Variables
+                creatingReasonCode = "Issued";
+                updatingReasonCode[creatingReasonCode];
+                recordvalidFrom = LicDates.RandomDate(2014, 2015);
+                recordvalidTo = LicDates.RandomDate(2019, 2023);
+                LGVValidFrom = LicDates.RandomDate(1989, 2013);
+                PCVValidFrom = LicDates.RandomDate(1983, 2013);
+                PCVValidTo = LicDates.RandomDate(2016, 2025);
+                //End of IEP's Certificate of Professional Competence Variables
 
-            // IEP's Conduct Case Variables
-            Date decisionDate;
-            String letterType;
-            String letter;
-            String lgvLGVAppealResult;
-            String LGVOutcome;
-            Date LGVRevocationValidFrom;
-            Date LGVRevocationValidTo;
-            String PCVAppealResult;
-            String PCVOutcome;
-            Date PCVRecovationValidFrom;
-            Date PCVRevocationValidTo;
-            String publicEnquiryStatusType;
-            Date startDate;
-            String statusType;
-            int TAOPartyID;
-            //List<ConductCaseEvent> events;   //needs to be uncommented
-            //End of IEP Conduct Case Variables
 
-            // IEP's Conduct Case Event Variables        ARE THESE VARIABLES OR ARE THEY ACTUALLY CLASSES?
-            Date eventDate;
-            String eventType;
-            String nonEndorsableOffence;
-            //Date getEventDate();      //Needs uncommenting
-            //End of IEP Conduct Case Variables
-
-            // IEP Country Variables
-            String name;
-            String Code;
-            String internalName;
-            String internalCode;
-            //public String getName();
-            //End of IEP Variables
-
-            // IEP Death details Variables
-            Date deathDate;
-            String verificationLevelDeathDateCode;
-            // END
-
-            // IEP Disqualification Variables
-            Date disqDate;
-            Date disqFromDate;
-            Date disqToDate;
-            Boolean forLife;
-            int endorsementID;
-            Boolean concurrent;
-            String type;
-            Date disqvalidFrom;
-            Date disqvalidTo;
-            //End
-
-            // IEP Driver Variables
-            // List<DriverNumber> driverNumberHistory;       NEEDS UNCOMMENTING
-            // List<DrierFlag> flags;                        "
-            // private Licence licence;
-            // private DriverStatus status;
-            // private DriverStatedFlags driverStatedFlags
-            Date firstProvisionalDate;
-            Date DisqualifiedUntilDate;
-            // private disqualificationUntilType disqualifiedUntilType;
-            String HROType;
-            // List<ConductCase> ConductCases;
-            // private Disqualification matchedDisqualification;
-            // List<Disqualification> disqualifications;
-            // List<TachoCard> tachoCards;
-            //List<CertificateOfProfessionalCompetence> CPCs;
-            // List<DriverQualificaitonCard> DQCs;
-            // List<TestPass> testPasses;
-            // List<String> errorCodes;
-            Boolean nslInCorruptedRange;
-            // List<LicenceToken> licenceTokens;
-            Boolean blockedRecord = false;
-            String deltaFileName;
-            Date CreationTime;
+            }
 
 
 
@@ -747,22 +1182,30 @@ public class JavaD90Feed {
 
 
 
+                //**************************************OUTPUT TO SCREEN ***************************************
 
 
+                System.out.println(dln[randNumDln] + " / " + Title + " / " +
+                        firstName + " " + mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() + " / " + verificationLevelBirthDateCode + " / "
+                        + verificationLevelBirthDateName + " / " + gender + " / " + birthPlace[randNumPoB] + " / " + countryCode[randNumPoB]
+                        + " / " + countryInternalName[randNumPoB] + " / " + countryInternalCode[randNumPoB] + " / " + line1 + "," + line2 + "," + posttown + "," + postcode + " / " +
+                        Country + " / " + langCode + " / " + (organDonation == 0 ? "Y" : "N")
+                        + " / " + pafKey + " / " + orgName + " / " + tfare + " / " + dtfare + " / " + ddtfare + " / " + dLocality + " / " + ddLocality + " / " +
+                        militaryAddress.getPoBox() + " / " + addressvalidFrom + " / " +
+                        addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / " + verificationLevelBirthDateCode + " / " +
+                        verificationLevelBirthDateName + " / " +
 
 
-                System.out.println( dln[randNumDln] + " / " + Title + " / " +
-                    firstName + " "+ mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() +
-                    " / " + gender + " / " + birthPlace[randNumPoB] + " / " + line1 + "," + line2 + "," + posttown + "," + postcode + " / " + (organDonation == 0 ? "Y" : "N") +
-                    " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
+                        " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
                         + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
 
-            /** adding 1 to the counter */
-            counter++;
+                /** adding 1 to the counter */
+                counter++;
 
 
+            }
         }
+
     }
 
-}
 
