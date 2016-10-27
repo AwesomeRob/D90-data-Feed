@@ -592,6 +592,7 @@ public class JavaD90Feed {
                 "Eng",
                 "Eng",
                 "Eng",
+                "Eng",
                 "Cym",
         };
 
@@ -634,155 +635,17 @@ public class JavaD90Feed {
         };
         // End of IEP's Birth Details Variables
 
-        // IEP's Certificate of Professional Competence Variables
-        String creatingReasonCode = "Issued";
-        final String[] updatingReasonCode = {
-                "Renewal",
-                "First Issue",
-                "Duplicate",
-        };
-        Date recordvalidFrom = LicDates.RandomDate(2014, 2015);
-        Date recordvalidTo = LicDates.RandomDate(2019, 2023);
-        Date LGVValidFrom = LicDates.RandomDate(1989, 2013);
-        Date PCVValidFrom = LicDates.RandomDate(1983, 2013);
-        Date PCVValidTo = LicDates.RandomDate(2016, 2025);
-        //End of IEP's Certificate of Professional Competence Variables
 
-        // IEP's Conduct Case Variables
-        Date decisionDate = LicDates.RandomDate(1999, 2015);
-        final String letterType[] = {
-                "War",
-                "Pen",
-                "Sum",
-                "NFA",
-        };
-        final String letter[] = {
-                "Warning",
-                "Pending",
-                "Summons to attend",
-                "No Further Action",
-        };
-        final String lgvLGVAppealResult[] = {
-                "Up Held";
-                "Further Sentence Passed",
-                "Decision Overturned",
-        }
-        final String LGVOutcome []= {
-                "Sentence Remains",
-                "Further Revocation Period",
-                "Original Decision Overturned",
-        };
-        Date LGVRevocationValidFrom = LicDates.RandomDate(2013, 2015);
-        Date LGVRevocationValidTo = LicDates.RandomDate(2015, 2016);
-        String PCVAppealResult = "";
-        String PCVOutcome = "";
-        Date PCVRecovationValidFrom;
-        Date PCVRevocationValidTo;
-        String publicEnquiryStatusType = "";
-        Date startDate;
-        String statusType = "";
-        int TAOPartyID = 41268;
-        //List<ConductCaseEvent> events;   //needs to be uncommented
-        //End of IEP Conduct Case Variables
 
-        // IEP's Conduct Case Event Variables        ARE THESE VARIABLES OR ARE THEY ACTUALLY CLASSES?
-        Date eventDate = LicDates.RandomDate(2014, 2016);
-        String eventType = "Revocation";
-        String nonEndorsableOffence = "";
-        Date ConCaseDate = todaydate;
-        //End of IEP Conduct Case Variables
-
+        //*******************place into calsses
 
         // IEP Death details Variables
         Date deathDate;
         String verificationLevelDeathDateCode = "";
         // END
 
-        //IEP Endorsement Variables
-        final int endorsementID[] = {
-                1,
-                2,
-                3,
-                4,
-                15,
-                28,
-                73,
 
-        };
-        final int disqual[] = {
-                0,
-                1,
-        };
-        final String endorsementCode[] = {
-            "AC10",
-            "BA10",
-            "CD30",
-            "DR10",
-            "DR60",
-            "IN10",
-            "MS30",
-        };
-        final String convictingCourt[] = {
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-            "MoJC15",
-        };
-        Date offence = LicDates.RandomDate(2008, 2010);
-        Date expires = LicDates.RandomDate(2011, 2012);
-        Date removed = expires;
-        Date conviction = LicDates.RandomDate(2009, 2011);
-        Date sentencing = conviction;
-        final String duration[] = {
-                "12 mo",
-                "18 mo",
-                "17 mo",
-                "24 mo",
-        };
-        final Double fine[] = {
-                194.65,
-                2000.00,
-                1000.00,
-                1567.93,
-        } ;
-        String fineCurrency = "£";
-        String rehabilitated;
-        final int noPoints[] ={
-                3,
-                6,
-                10,
-                7,
-        } ;
 
-        String AlcoholLevel;
-        String alcoholTestType;
-        String appealCourt;
-        Date disqualReIm;
-        Date disqualRemov;
-        Date disqualSusPA;
-        String sentencingcourt;
-        String susPrisonSentenceDur;
-        String custodialPeriod;
-        Date indicativeRehabSpentDate;
-        //Boolean nonEndorsableOffence;    says this is already declared somewhere else
-        //End
-
-        // IEP Disqualification Variables
-        Date disqDate = LicDates.RandomDate(2010, 2013);
-        Date disqFromDate = disqDate;
-        Date disqToDate = LicDates.RandomDate(2014, 2017);;
-        //Boolean forLife;
-        int endorsementID ;
-        Boolean concurrent;
-        String type;
-        Date disqvalidFrom;
-        Date disqvalidTo;
-        //End
 
         // IEP Driver Variables
         // List<DriverNumber> driverNumberHistory;       NEEDS UNCOMMENTING
@@ -875,7 +738,7 @@ public class JavaD90Feed {
         String electronicAddress;
         //End
 
-        /
+
 
         // IEP Entitlement Variables
         String entitlementCode;
@@ -908,15 +771,6 @@ public class JavaD90Feed {
         String countryNumber;
         //End
 
-        //IEP Image Variables
-        Date imageCaptureDate;
-        String imageFormat;
-        int imageID;
-        String imageOrigin;
-        String imageType;
-        Date imageValidFrom;
-        Date imageValidTo;
-        //End
 
         // IEP Licence Variables
         Date licenceValidFrom;
@@ -1161,23 +1015,7 @@ public class JavaD90Feed {
                 militaryAddress.randomise();
             }
 
-            if (randNumProv == 4) {
-                // IEP's Certificate of Professional Competence Variables
-                creatingReasonCode = "Issued";
-                updatingReasonCode[creatingReasonCode];
-                recordvalidFrom = LicDates.RandomDate(2014, 2015);
-                recordvalidTo = LicDates.RandomDate(2019, 2023);
-                LGVValidFrom = LicDates.RandomDate(1989, 2013);
-                PCVValidFrom = LicDates.RandomDate(1983, 2013);
-                PCVValidTo = LicDates.RandomDate(2016, 2025);
-                //End of IEP's Certificate of Professional Competence Variables
-
-
-            }
-
-
-
-
+            CPC certProffComp = new CPC();
 
 
 
@@ -1185,19 +1023,26 @@ public class JavaD90Feed {
                 //**************************************OUTPUT TO SCREEN ***************************************
 
 
-                System.out.println(dln[randNumDln] + " / " + Title + " / " +
-                        firstName + " " + mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() + " / " + verificationLevelBirthDateCode + " / "
+                System.out.print(dln[randNumDln] + " / " + Title + " / " + firstName + " " + mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() + " / " + verificationLevelBirthDateCode + " / "
                         + verificationLevelBirthDateName + " / " + gender + " / " + birthPlace[randNumPoB] + " / " + countryCode[randNumPoB]
                         + " / " + countryInternalName[randNumPoB] + " / " + countryInternalCode[randNumPoB] + " / " + line1 + "," + line2 + "," + posttown + "," + postcode + " / " +
-                        Country + " / " + langCode + " / " + (organDonation == 0 ? "Y" : "N")
+                        Country + " / " + langcode[randNumEndorse] + " / " + (organDonation == 0 ? "Y" : "N")
                         + " / " + pafKey + " / " + orgName + " / " + tfare + " / " + dtfare + " / " + ddtfare + " / " + dLocality + " / " + ddLocality + " / " +
                         militaryAddress.getPoBox() + " / " + addressvalidFrom + " / " +
                         addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / " + verificationLevelBirthDateCode + " / " +
-                        verificationLevelBirthDateName + " / " +
+                        verificationLevelBirthDateName);
+
+                if ((randNumProv == 4) || ( randNumProv == 6)) {
+                           System.out.print(certProffComp.getCreatingReasonCode() + " / " + certProffComp.getUpdateReason() + " / " + certProffComp.getRecordvalidFrom() + " / "
+                                + certProffComp.getRecordvalidTo() + " / " + certProffComp.getLGVValidFrom() + " / " + certProffComp.getPCVValidFrom() + "  / " + certProffComp.getPCVValidTo() + " / " );
+                }
+                else {
+                    System.out.println( " /<<<<<<<<<<<<<<<<<<<<<<<<<< " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
+                                        + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
+
+                            }
 
 
-                        " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
-                        + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
 
                 /** adding 1 to the counter */
                 counter++;

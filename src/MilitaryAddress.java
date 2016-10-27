@@ -77,12 +77,5 @@ public class MilitaryAddress {
         return ranNumGen;
     }
 
-    //    poBox = "PO Box 123";
-//    mBarracks = "Aldershot";
-//    mBFPONumber = "BFPO 65";
-//    mRank = "Corporal";
-//    mRegiment = "Grenadier Gaurds";
-//    mServiceNumber = "30093857";
-//    mUnit = "Infantry";
-//    Type = "G1";
+
 }
