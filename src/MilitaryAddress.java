@@ -41,8 +41,7 @@ public class MilitaryAddress {
         Type = "G1";
     }
 
-    public String getPoBox() {
-        return poBox;
+    public String getPoBox() { return poBox;
     }
 
     public String getmBarracks() {

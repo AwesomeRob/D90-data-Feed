@@ -1011,9 +1011,6 @@ public class JavaD90Feed {
 
             //**IEP Military Variables IF statement**
             MilitaryAddress militaryAddress = new MilitaryAddress();
-            if (randNumMilitary == 0) {
-                militaryAddress.randomise();
-            }
 
             CPC certProffComp = new CPC();
 
@@ -1031,6 +1028,12 @@ public class JavaD90Feed {
                         militaryAddress.getPoBox() + " / " + addressvalidFrom + " / " +
                         addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / " + verificationLevelBirthDateCode + " / " +
                         verificationLevelBirthDateName);
+
+                if (randNumMilitary == 0) {
+                System.out.print(militaryAddress.getPoBox() + " / " + militaryAddress.getmBarracks() + " / " + militaryAddress.getmBFPONumber() + " / " +
+                militaryAddress.getmRank() + " / " + militaryAddress.getmRegiment() + " / " + militaryAddress.getmServiceNumber() + " / " +
+                militaryAddress.getmUnit() + " / " + militaryAddress.getType());
+               }
 
                 if ((randNumProv == 4) || ( randNumProv == 6)) {
                            System.out.print(certProffComp.getCreatingReasonCode() + " / " + certProffComp.getUpdateReason() + " / " + certProffComp.getRecordvalidFrom() + " / "
