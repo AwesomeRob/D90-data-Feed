@@ -587,13 +587,10 @@ public class JavaD90Feed {
         };
 
         final String[] langcode = {
-                "Eng",
-                "Eng",
-                "Eng",
-                "Eng",
-                "Eng",
-                "Eng",
-                "Cym",
+                "1",
+                "1",
+                "1",
+                "2",
         };
 
         String pafKey = "";
@@ -1009,10 +1006,14 @@ public class JavaD90Feed {
             String posttown = col[4];
             String postcode = col[5];
 
-            //**IEP Military Variables IF statement**
+            //Classes ********
             MilitaryAddress militaryAddress = new MilitaryAddress();
-
             CPC certProffComp = new CPC();
+
+            Endorsement EndorseDetails = new Endorsement();
+            EndorseDetails.randomise();
+
+
 
 
 
@@ -1020,27 +1021,37 @@ public class JavaD90Feed {
                 //**************************************OUTPUT TO SCREEN ***************************************
 
 
-                System.out.print(dln[randNumDln] + " / " + Title + " / " + firstName + " " + mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() + " / " + verificationLevelBirthDateCode + " / "
-                        + verificationLevelBirthDateName + " / " + gender + " / " + birthPlace[randNumPoB] + " / " + countryCode[randNumPoB]
+                System.out.print(dln[randNumDln] + " / " + Title + " / " + firstName + " " + mddleName + " / " + lastName[randNumLn] + " / " + DoB.toString() + " / " + verificationLevelBirthDateCode[randNumVerifLvl] + " / "
+                        + verificationLevelBirthDateName[randNumVerifLvl] + " / " + gender + " / " + birthPlace[randNumPoB] + " / " + countryCode[randNumPoB]
                         + " / " + countryInternalName[randNumPoB] + " / " + countryInternalCode[randNumPoB] + " / " + line1 + "," + line2 + "," + posttown + "," + postcode + " / " +
-                        Country + " / " + langcode[randNumEndorse] + " / " + (organDonation == 0 ? "Y" : "N")
+                        Country[randNumVerifLvl] + " / " + langcode[randNumVerifLvl] + " / " + (organDonation == 0 ? "Y" : "N")
                         + " / " + pafKey + " / " + orgName + " / " + tfare + " / " + dtfare + " / " + ddtfare + " / " + dLocality + " / " + ddLocality + " / " +
                         militaryAddress.getPoBox() + " / " + addressvalidFrom + " / " +
-                        addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / " + verificationLevelBirthDateCode + " / " +
-                        verificationLevelBirthDateName);
+                        addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / ");
 
-                if (randNumMilitary == 0) {
+                if (randNumMilitary == 0) {   // IF statement for military address if random No = 0 print military address
                 System.out.print(militaryAddress.getPoBox() + " / " + militaryAddress.getmBarracks() + " / " + militaryAddress.getmBFPONumber() + " / " +
                 militaryAddress.getmRank() + " / " + militaryAddress.getmRegiment() + " / " + militaryAddress.getmServiceNumber() + " / " +
                 militaryAddress.getmUnit() + " / " + militaryAddress.getType());
                }
 
-                if ((randNumProv == 4) || ( randNumProv == 6)) {
+                if ((randNumProv == 4) || ( randNumProv == 6)) {    //  IF Statement for CPC if Cat C or D held in entitlements
                            System.out.print(certProffComp.getCreatingReasonCode() + " / " + certProffComp.getUpdateReason() + " / " + certProffComp.getRecordvalidFrom() + " / "
                                 + certProffComp.getRecordvalidTo() + " / " + certProffComp.getLGVValidFrom() + " / " + certProffComp.getPCVValidFrom() + "  / " + certProffComp.getPCVValidTo() + " / " );
                 }
+                int Num = 0;
+
+            if (Num == 0){
+                System.out.print(EndorseDetails.getEndorseID() + " / " + EndorseDetails.getDisqualified() + " / " + EndorseDetails.getEndorsCode() + " / " + EndorseDetails.getEndorseID() + " / "
+                + EndorseDetails.getConvCourt() + " / " + EndorseDetails.getOffenceDate() + " / " +  EndorseDetails.getOffenceDate() + " / " + EndorseDetails.getExpiresDate() + " / " + EndorseDetails.getRemoved() + " / " +
+                 EndorseDetails.getConviction() + " / " + EndorseDetails.getSentencing() + " / " + EndorseDetails.getFineAmount() + " / " + EndorseDetails.getFineCurrency() + " / " + EndorseDetails.getNumOfPoints()
+                        + " / " + EndorseDetails.getAlcLvl() + " / " + EndorseDetails.getAlcoholTestType() + " / " + EndorseDetails.getSentCourt() + " / " + EndorseDetails.getCustodialPeriod());
+            }
+
+
+
                 else {
-                    System.out.println( " /<<<<<<<<<<<<<<<<<<<<<<<<<< " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
+                    System.out.print( " /<<<<<<<<<<<<<<<<<<<<<<<<<< " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
                                         + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
 
                             }
@@ -1049,6 +1060,8 @@ public class JavaD90Feed {
 
                 /** adding 1 to the counter */
                 counter++;
+
+            System.out.println("");
 
 
             }
