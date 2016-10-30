@@ -502,13 +502,10 @@ public class JavaD90Feed {
         String driverStatName = "Full Substantive";   //Full or Prov
 
 
-        /** Creating random number generator in main */
+        /** Creating an object ranNumGen of type Random to use for Random Numbers  */
         Random ranNumGen = new Random();
-        /** Declaring the counter variable for use in a while loop */
+        /** Declaring and initialising the counter variable for use in a while loop */
         int counter = 0;
-        /**Importing random date function*/
-
-
 
         /** String array for place of birth */
         final String[] birthPlace = {
@@ -523,7 +520,7 @@ public class JavaD90Feed {
                 "Australia",
         };
 
-        // IEP Country Variables
+        //Array for Country Code relating to Country
         final String countryCode[] = {
                 "Cym",
                 "Eng",
@@ -535,6 +532,7 @@ public class JavaD90Feed {
                 "GB",
                 "Oz"
         };
+        //Array for countryInternalName relating to country
         final String countryInternalName[] = {
                 "Wales",
                 "England",
@@ -547,6 +545,8 @@ public class JavaD90Feed {
                 "Australia",
 
         };
+
+        //Array relating to country
         String countryInternalCode[] = {
                 "5",
                 "6",
@@ -558,7 +558,6 @@ public class JavaD90Feed {
                 "2",
                 "15",
         };
-        //End of IEP Country Variables
 
         // Open the address file
         // Check valid path
@@ -578,18 +577,14 @@ public class JavaD90Feed {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date todaydate = new Date();
 
-
-        // **********************   IEP Variables **********************************************************
-
-
-        // Additional IEP Address Fields
+        //Additional Country line for the imported addresses
         final String[] Country = {
                 "England",
                 "Wales",
                 "Scotland",
                 "Northern Ireland"
         };
-
+        //Array for Language code 1 for Eng and 2 for Welsh. welsh is 1:4
         final String[] langcode = {
                 "1",
                 "1",
@@ -597,6 +592,7 @@ public class JavaD90Feed {
                 "2",
         };
 
+        //Variables from IEP relating to addresses
         String pafKey = "";
         String orgName = "";
         String tfare = "";
@@ -634,54 +630,9 @@ public class JavaD90Feed {
 
 
         // IEP Death details Variables
-       // Date deathDate;
+        // Date deathDate;
         //String verificationLevelDeathDateCode = "";
         // END
-
-
-
-
-
-        // Start of IEP DriverFlag Variables
-        String flag ;
-        Date driverFlagValidFrom;
-        Date driverFlagValidTo;
-        Boolean manual;
-        Boolean caseType;
-        //End of DriverFlag variables;
-
-
-        //IEP Variables DriversStatedFlags
-        Boolean duplicateOfLicence;
-        Boolean exchangeOfLicence;
-        Boolean higherFeePaid;
-        Boolean onYoungDriverScheme;
-        Boolean lifeFeePaid;
-        Boolean medicalInvestigationRequiredForMedicalIssue;
-        Boolean ordinaryMedicalInvestigaitonInProgress;
-        Boolean ordinaryMedicalDeclerationMade;
-        Boolean ordinaryMedicalPapersHled;
-        String photoInvitationSent;
-        Boolean receivesMobilityallowance;
-        Boolean restrictedAsSpecifiedInSecretaryOfStateNotice;
-        Boolean sightCorrectionRequired;
-        Boolean vocationalMedicalPapersHeld;
-        Boolean vocationalMedicalInvestigationInProgress;
-        Boolean excessEndorsements;
-        Boolean disqualified;
-        Boolean dttp;
-        Boolean rttp;
-        Boolean dtetp;
-        Boolean bretEntitlementStatus;
-        Boolean notRetainedC1D1EntitlementStatus;
-        Boolean retainedC1D1EntitlementStatus;
-        Boolean withheldC1D1Entitlements;
-        Boolean erroneouslyRevokedEntitlementStatus;
-        Boolean medicalRestrictionPeriodEntitlementStatus;
-        //END
-
-
-
 
 
         // IEP Entitlement Variables
