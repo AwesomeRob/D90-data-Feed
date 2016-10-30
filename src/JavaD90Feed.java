@@ -485,15 +485,7 @@ public class JavaD90Feed {
                 "A B D1",
         };
 
-
-        /** Creating random number generator in main */
-        Random ranNumGen = new Random();
-        /** Declaring the counter variable for use in a while loop */
-        int counter = 0;
-        /**Importing random date function*/
-
-
-        /** String array for test pass category & date */
+        /** Array for full entitlements */
         final String[] testPass = {
                 "Null",
                 "B",
@@ -505,6 +497,18 @@ public class JavaD90Feed {
                 "B BE",
                 "A B D1",
         };
+
+        String driverStatCode = "Full";   //Full or Prov
+        String driverStatName = "Full Substantive";   //Full or Prov
+
+
+        /** Creating random number generator in main */
+        Random ranNumGen = new Random();
+        /** Declaring the counter variable for use in a while loop */
+        int counter = 0;
+        /**Importing random date function*/
+
+
 
         /** String array for place of birth */
         final String[] birthPlace = {
@@ -610,11 +614,6 @@ public class JavaD90Feed {
         String Type; // initialised in Military Address Class
         Date addressvalidFrom = LicDates.RandomDate(1983, 2015);
         Date addressvalidTo = todaydate;
-        String vanityInfo = "";
-        List<String> uLine;
-        String uPostCode = "";
-        String value = "ABC123";
-        String valueName = "Value A";
         // End of IEP Address Variables;
 
         // IEP's Birth Details variables
@@ -634,68 +633,23 @@ public class JavaD90Feed {
 
 
 
-        //*******************place into calsses
-
         // IEP Death details Variables
-        Date deathDate;
-        String verificationLevelDeathDateCode = "";
+       // Date deathDate;
+        //String verificationLevelDeathDateCode = "";
         // END
 
 
 
 
-        // IEP Driver Variables
-        // List<DriverNumber> driverNumberHistory;       NEEDS UNCOMMENTING
-        // List<DrierFlag> flags;                        "
-        // private Licence licence;
-        // private DriverStatus status;
-        // private DriverStatedFlags driverStatedFlags
-        Date firstProvisionalDate;
-        Date DisqualifiedUntilDate;
-        // private disqualificationUntilType disqualifiedUntilType;
-        String HROType;
-        // List<ConductCase> ConductCases;
-        // private Disqualification matchedDisqualification;
-        // List<Disqualification> disqualifications;
-        // List<TachoCard> tachoCards;
-        //List<CertificateOfProfessionalCompetence> CPCs;
-        // List<DriverQualificaitonCard> DQCs;
-        // List<TestPass> testPasses;
-        // List<String> errorCodes;
-        Boolean nslInCorruptedRange;
-        // List<LicenceToken> licenceTokens;
-        Boolean blockedRecord = false;
-        String deltaFileName;
-        Date CreationTime;
-        // End of IEP Variables Driver
 
         // Start of IEP DriverFlag Variables
-        String flag;
+        String flag ;
         Date driverFlagValidFrom;
         Date driverFlagValidTo;
         Boolean manual;
         Boolean caseType;
         //End of DriverFlag variables;
 
-        // IEP Driver Number Variables
-        String id;
-        Attributes.Name drivername;
-        Date drivernumValidFrom;
-        Date drivernumValidTo;
-        //End
-
-        // IEP Variables DriversQualificationCard
-        int communityCode;
-        int dispatchedToAddressID;
-        int photoImageID;
-        String reasonRequested;
-        int signatureImageID;
-        String driverNumber;
-        String dqcfirstName;
-        String dqcsurname;
-        Date dqcDob;
-        String dqcbirthPlace;
-        //End
 
         //IEP Variables DriversStatedFlags
         Boolean duplicateOfLicence;
@@ -726,14 +680,7 @@ public class JavaD90Feed {
         Boolean medicalRestrictionPeriodEntitlementStatus;
         //END
 
-        //IEP DriverStatus Variables
-        String driverStatusCode;
-        String driverStatusName;
-        //End
 
-        // IEP ElectronicAddress Variables
-        String electronicAddress;
-        //End
 
 
 
@@ -814,38 +761,6 @@ public class JavaD90Feed {
         String licTokStatusValue;
         //End
 
-        // IEP Message Variables
-        String messageKey;
-        String messageDescription;
-        Boolean error;
-        int messageType;
-        // private object extra;
-        //End
-
-        // IEP Name vairables
-        String nametitle = null;
-        //List<String> givenName = null;
-        String familyName = null;
-        Boolean istitleAddress = false;
-        String initials = null;
-        //End
-
-        // IEP NysiisKeys Variables
-        //String NysiisKeys familyName, givenname;
-        //End
-
-        //IEP Organisaiton Variables
-        String organisationName;
-        String organisaitonType;
-        Date organisationValidFrom;
-        Date organisaitonValidTo;
-        //End
-
-        //IEP OtherSentence Variables
-        String othersentCode;
-        String otherSentName;
-        String othersentDuration;
-        //End
 
         //IEP Passport Variables
         String passportNumber;
@@ -879,35 +794,8 @@ public class JavaD90Feed {
         //private NysiisKeys nysiiskeys;
         //End
 
-        //IEP Rules Driver Variables
-        String RulesdriverNumber;
-        //Driver driver;
-        //List<Messages> messages;
-        String ruleApplied;
-        Boolean fullySuppressed;
-        //optional<String> supressionReason = optional.absent();
-        //End
 
-        //IEP ServiceResult Variables
-        String guid;
-        String version;
-        Date serviceDate;
-        //private T result;
-        //End
 
-        //IEP TachoCard Variables
-        //List<String> dispatchAddressLines;
-        String dispatchpostCode;
-        int foreignDrivingLicenceID;
-        String MSCode;
-        String MSTTachoNumber;
-        String tachoCardNumber;
-        int postalAddressID;
-        String tachoCardType;
-        int VOSAPartyID;
-        int workshopID;
-        String workshopNameOnCard;
-        //End
 
         //IEP Telephone Variables
         String telephoneNumber;
@@ -1013,6 +901,8 @@ public class JavaD90Feed {
             Endorsement EndorseDetails = new Endorsement();
             EndorseDetails.randomise();
 
+            Disqualification disqual = new Disqualification();
+            disqual.randomise();
 
 
 
@@ -1027,7 +917,7 @@ public class JavaD90Feed {
                         Country[randNumVerifLvl] + " / " + langcode[randNumVerifLvl] + " / " + (organDonation == 0 ? "Y" : "N")
                         + " / " + pafKey + " / " + orgName + " / " + tfare + " / " + dtfare + " / " + ddtfare + " / " + dLocality + " / " + ddLocality + " / " +
                         militaryAddress.getPoBox() + " / " + addressvalidFrom + " / " +
-                        addressvalidTo + " / " + uPostCode + vanityInfo + " / " + uPostCode + " / " + value + " / " + valueName + " / ");
+                        addressvalidTo + " / ");
 
                 if (randNumMilitary == 0) {   // IF statement for military address if random No = 0 print military address
                 System.out.print(militaryAddress.getPoBox() + " / " + militaryAddress.getmBarracks() + " / " + militaryAddress.getmBFPONumber() + " / " +
@@ -1039,19 +929,30 @@ public class JavaD90Feed {
                            System.out.print(certProffComp.getCreatingReasonCode() + " / " + certProffComp.getUpdateReason() + " / " + certProffComp.getRecordvalidFrom() + " / "
                                 + certProffComp.getRecordvalidTo() + " / " + certProffComp.getLGVValidFrom() + " / " + certProffComp.getPCVValidFrom() + "  / " + certProffComp.getPCVValidTo() + " / " );
                 }
-                int Num = 0;
 
-            if (Num == 0){
+
+            if (randNumDln == 0){
                 System.out.print(EndorseDetails.getEndorseID() + " / " + EndorseDetails.getDisqualified() + " / " + EndorseDetails.getEndorsCode() + " / " + EndorseDetails.getEndorseID() + " / "
                 + EndorseDetails.getConvCourt() + " / " + EndorseDetails.getOffenceDate() + " / " +  EndorseDetails.getOffenceDate() + " / " + EndorseDetails.getExpiresDate() + " / " + EndorseDetails.getRemoved() + " / " +
                  EndorseDetails.getConviction() + " / " + EndorseDetails.getSentencing() + " / " + EndorseDetails.getFineAmount() + " / " + EndorseDetails.getFineCurrency() + " / " + EndorseDetails.getNumOfPoints()
-                        + " / " + EndorseDetails.getAlcLvl() + " / " + EndorseDetails.getAlcoholTestType() + " / " + EndorseDetails.getSentCourt() + " / " + EndorseDetails.getCustodialPeriod());
+                        + " / " + EndorseDetails.getAlcLvl() + " / " + EndorseDetails.getAlcoholTestType() + " / " + EndorseDetails.getSentCourt() + " / " + EndorseDetails.getCustodialPeriod() + " / ");
+            }
+
+            if (randNumDln == 0){
+                System.out.print(disqual.getDisqDate() + " / " + disqual.getDisqFromDate() + " / " + disqual.getDisqToDate() + " / " + disqual.getEndorsementID() + " / " + disqual.getType()
+                + " / " + disqual.getDisqvalidFrom() + " / " + disqual.getDisqvalidTo());
+
+            }
+
+            if (randNumTp == 0){
+
+                driverStatCode = "Prov";
+                driverStatName = "Provisional";
             }
 
 
-
                 else {
-                    System.out.print( " /<<<<<<<<<<<<<<<<<<<<<<<<<< " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
+                    System.out.print( driverStatCode + " / " + driverStatName + " / "  + " / " + testPass[randNumTp] + " / " + fullEntitlement[randNumFull] + " / " + provEntitlement[randNumProv]
                                         + " / " + issueDate.toString() + " / " + expiryDate.toString() + " / " + photoExpDate.toString() + " / ");             /** Printing a record to screen */
 
                             }

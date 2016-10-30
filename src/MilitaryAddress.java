@@ -17,6 +17,22 @@ public class MilitaryAddress {
     private final String[] poBoxes = {
             "poBox 123",
             "poBox456",
+            "poBox555",
+            "poBox987",
+    };
+
+    private final String[] barraks = {
+            "Aldershot",
+            "SennyBridge",
+            "Beacon Barracks",
+            "Blandford Camp",
+    };
+
+    private  final String[] BFPONo = {
+            "BFPO65",
+            "BFPO755",
+            "BFPO999",
+            "BFPO7362",
     };
 
     public MilitaryAddress() {
@@ -30,13 +46,34 @@ public class MilitaryAddress {
         Type = "";
     }
 
+    private final String rank[] = {
+            "Corporal",
+            "Sergeant",
+            "Lance Corporal",
+            "Private",
+    };
+
+    private final String regiment[] = {
+            "Blues and Royals",
+            "Grenadier Guards",
+            "ColdStream Guards",
+            "The Parachute Regiment",
+    };
+
+    private final String serviceNo[] = {
+            "3004455",
+            "30055632",
+            "3006859",
+            "3009875",
+    };
+
     public void randomise(){
-        poBox = poBoxes[ranNumGen.nextInt(1)];
-        mBarracks = "Aldershot";
-        mBFPONumber = "BFPO 65";
-        mRank = "Corporal";
-        mRegiment = "Grenadier Gaurds";
-        mServiceNumber = "30093857";
+        poBox = poBoxes[ranNumGen.nextInt(4)];
+        mBarracks = barraks[ranNumGen.nextInt(4)];
+        mBFPONumber = BFPONo[ranNumGen.nextInt(4)];
+        mRank = rank[ranNumGen.nextInt(4)];
+        mRegiment = regiment[ranNumGen.nextInt(4)];
+        mServiceNumber = serviceNo[ranNumGen.nextInt(4)];
         mUnit = "Infantry";
         Type = "G1";
     }
