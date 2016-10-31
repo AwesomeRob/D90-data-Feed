@@ -6,7 +6,7 @@ import java.util.Random;
  */
 public class Disqualification {
 
-    Random ranNumGen = new Random();
+    Random ranNumGen = new Random(1);
 
     Date disqDate;
     Date disqFromDate;
@@ -27,6 +27,33 @@ public class Disqualification {
     String type;
     Date disqvalidFrom;
     Date disqvalidTo;
+
+
+    private final String disqual[] ={
+            "Y",
+            "N",
+    };
+
+    String disqualified = disqual[ranNumGen.nextInt(2)];;
+
+    private final String isDttp[] ={
+            "Y",
+            "N",
+    };
+    String dttp = isDttp[ranNumGen.nextInt(2)];;
+
+    private final String isRttp[] ={
+            "Y",
+            "N",
+    };
+    String  rttp = isRttp[ranNumGen.nextInt(2)];;
+
+    private final String isDtetp[] ={
+            "Y",
+            "N",
+    };
+    String dtetp = isDtetp[ranNumGen.nextInt(2)];
+    //**********************************************************************************
 
 
     public void randomise() {
@@ -68,4 +95,20 @@ public class Disqualification {
     public Date getDisqvalidTo() {
         return disqvalidTo;
     }
+    public String getDisqualified() {
+        return disqualified;
+    }
+
+    public String getDttp() {
+        return dttp;
+    }
+
+    public String getRttp() {
+        return rttp;
+    }
+
+    public String getDtetp() {
+        return dtetp;
+    }
+
 }

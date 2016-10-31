@@ -6,7 +6,7 @@ import java.util.Random;
  */
 public class Endorsement {
 
-    Random ranNumGen = new Random();
+    Random ranNumGen = new Random(1);
 
     int endorseID;
     final int endorsementID[] = {

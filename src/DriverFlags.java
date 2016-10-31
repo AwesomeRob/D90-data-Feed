@@ -6,16 +6,15 @@ import java.util.Random;
  */
 public class DriverFlags {
 
-    Random ranNumGen = new Random();
+    Random ranNumGen = new Random(1);
 
-    String flag ;
     Date driverFlagValidFrom;
     Date driverFlagValidTo;
     private final String isManual[] ={
             "Y",
             "N",
     };
-    String manual = isManual[ranNumGen.nextInt(2)];
+    String manual;
 
     private final String dupOfLic[] = {
             "Y",
@@ -27,49 +26,49 @@ public class DriverFlags {
             "Y",
             "N",
     };
-    Boolean exchangeOfLicence;
+    String exchangeOfLicence;
 
     private final String highFeePaid[]={
             "Y",
             "N",
     };
-    Boolean higherFeePaid;
+    String higherFeePaid;
 
     private final String isYngDvr[] ={
             "Y",
             "N",
     };
-    Boolean onYoungDriverScheme;
+    String onYoungDriverScheme;
 
     private final String paidUp[] ={
             "Y",
             "N",
     };
-    Boolean lifeFeePaid;
+    String  lifeFeePaid;
 
     private final String mim[] ={
             "Y",
             "N",
     };
-    Boolean medicalInvestigationRequiredForMedicalIssue;
+    String medicalInvestigationRequiredForMedicalIssue;
 
     private final String OrdMim[] ={
             "Y",
             "N",
     };
-    Boolean ordinaryMedicalInvestigaitonInProgress;
+    String ordinaryMedicalInvestigaitonInProgress;
 
     private final String OrdMimDec[] ={
             "Y",
             "N",
     };
-    Boolean ordinaryMedicalDeclerationMade;
+    String ordinaryMedicalDeclerationMade;
 
     private final String mimpapers[] ={
             "Y",
             "N",
     };
-    Boolean ordinaryMedicalPapersHled;
+    String ordinaryMedicalPapersHled;
 
     private final String photoInvSnt[] ={
             "Y",
@@ -81,62 +80,139 @@ public class DriverFlags {
             "Y",
             "N",
     };
-    Boolean receivesMobilityallowance;
+    String receivesMobilityallowance;
 
     private final String rest[] ={
             "Y",
             "N",
     };
-    Boolean restrictedAsSpecifiedInSecretaryOfStateNotice;
+    String restrictedAsSpecifiedInSecretaryOfStateNotice;
 
     private final String sightCorr[] ={
             "Y",
             "N",
     };
-    Boolean sightCorrectionRequired;
+    String sightCorrectionRequired;
 
     private final String vocMim[] ={
             "Y",
             "N",
     };
-    Boolean vocationalMedicalPapersHeld;
+    String vocationalMedicalPapersHeld;
 
     private final String vocMimOngong[] ={
             "Y",
             "N",
     };
-    Boolean vocationalMedicalInvestigationInProgress;
+    String vocationalMedicalInvestigationInProgress;
 
     private final String xEndorse[] ={
             "Y",
             "N",
     };
-    Boolean excessEndorsements;
+    String excessEndorsements;
 
-    private final String disquak[] ={
-            "Y",
-            "N",
-    };
-    Boolean disqualified;
 
-    private final String isDttp[] ={
-            "Y",
-            "N",
-    };
-    Boolean dttp;
 
-    private final String isRttp[] ={
-            "Y",
-            "N",
-    };
-    Boolean rttp;
 
-    private final String isDtetp[] ={
-            "Y",
-            "N",
-    };
-    Boolean dtetp;
+    public void randomise() {
+        driverFlagValidFrom = LicDates.RandomDate(2009, 2011);;
+        driverFlagValidTo = LicDates.RandomDate(2012, 2014);;
+        manual = isManual[ranNumGen.nextInt(2)];
+        duplicateOfLicence = isManual[ranNumGen.nextInt(2)];;
+        exchangeOfLicence = xOfLic[ranNumGen.nextInt(2)];;
+        higherFeePaid = highFeePaid[ranNumGen.nextInt(2)];;
+        onYoungDriverScheme = isYngDvr[ranNumGen.nextInt(2)];;
+        lifeFeePaid= paidUp[ranNumGen.nextInt(2)];;
+        medicalInvestigationRequiredForMedicalIssue = mim[ranNumGen.nextInt(2)];;
+        ordinaryMedicalInvestigaitonInProgress = OrdMim[ranNumGen.nextInt(2)];;
+        ordinaryMedicalDeclerationMade = OrdMimDec[ranNumGen.nextInt(2)];;
+        ordinaryMedicalPapersHled = mimpapers[ranNumGen.nextInt(2)];;
+        photoInvitationSent = photoInvSnt[ranNumGen.nextInt(2)];;
+        receivesMobilityallowance = mobility[ranNumGen.nextInt(2)];;
+        restrictedAsSpecifiedInSecretaryOfStateNotice = rest[ranNumGen.nextInt(2)];;
+        sightCorrectionRequired = sightCorr[ranNumGen.nextInt(2)];;
+        vocationalMedicalPapersHeld =vocMim[ranNumGen.nextInt(2)];;
+        vocationalMedicalInvestigationInProgress = vocMimOngong[ranNumGen.nextInt(2)];;
+        excessEndorsements = xEndorse[ranNumGen.nextInt(2)];;
 
+    }
+
+    public Date getDriverFlagValidFrom() {
+        return driverFlagValidFrom;
+    }
+
+    public Date getDriverFlagValidTo() {
+        return driverFlagValidTo;
+    }
+
+    public String getManual() {
+        return manual;
+    }
+
+    public String getDuplicateOfLicence() {
+        return duplicateOfLicence;
+    }
+
+    public String getExchangeOfLicence() {
+        return exchangeOfLicence;
+    }
+
+    public String getHigherFeePaid() {
+        return higherFeePaid;
+    }
+
+    public String getOnYoungDriverScheme() {
+        return onYoungDriverScheme;
+    }
+
+    public String getLifeFeePaid() {
+        return lifeFeePaid;
+    }
+
+    public String getMedicalInvestigationRequiredForMedicalIssue() {
+        return medicalInvestigationRequiredForMedicalIssue;
+    }
+
+    public String getOrdinaryMedicalInvestigaitonInProgress() {
+        return ordinaryMedicalInvestigaitonInProgress;
+    }
+
+    public String getOrdinaryMedicalDeclerationMade() {
+        return ordinaryMedicalDeclerationMade;
+    }
+
+    public String getOrdinaryMedicalPapersHled() {
+        return ordinaryMedicalPapersHled;
+    }
+
+    public String getPhotoInvitationSent() {
+        return photoInvitationSent;
+    }
+
+    public String getReceivesMobilityallowance() {
+        return receivesMobilityallowance;
+    }
+
+    public String getRestrictedAsSpecifiedInSecretaryOfStateNotice() {
+        return restrictedAsSpecifiedInSecretaryOfStateNotice;
+    }
+
+    public String getSightCorrectionRequired() {
+        return sightCorrectionRequired;
+    }
+
+    public String getVocationalMedicalPapersHeld() {
+        return vocationalMedicalPapersHeld;
+    }
+
+    public String getVocationalMedicalInvestigationInProgress() {
+        return vocationalMedicalInvestigationInProgress;
+    }
+
+    public String getExcessEndorsements() {
+        return excessEndorsements;
+    }
 
 
 

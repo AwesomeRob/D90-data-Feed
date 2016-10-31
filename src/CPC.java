@@ -16,7 +16,7 @@ public class CPC {
     private Date LGVValidFrom;
     private Date PCVValidFrom;
     private Date PCVValidTo;
-    Random ranNumGen = new Random();
+    Random ranNumGen = new Random(1);
 
     private final String[] creatingReasCode = {
             "Ren",

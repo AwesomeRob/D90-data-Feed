@@ -12,7 +12,7 @@ public class MilitaryAddress {
     private String mServiceNumber;
     private String mUnit;
     private String Type;
-    Random ranNumGen = new Random();
+    Random ranNumGen = new Random(1);
 
     private final String[] poBoxes = {
             "poBox 123",
