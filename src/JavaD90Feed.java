@@ -663,12 +663,6 @@ public class JavaD90Feed {
         //End
 
 
-        //IEP LicenceTokenStaus Variables
-        String licTokStatusCode;
-        String licTokStatusValue;
-        //End
-
-
         //IEP Person Variables;
         String partyID;
         //Private Passport passport = null;
