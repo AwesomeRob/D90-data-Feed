@@ -8,8 +8,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;  /** This imports the random number generator */
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.jar.Attributes;
+import java.io.*;
 
 
 /**
@@ -816,62 +815,78 @@ public class JavaD90Feed {
             ImageDetails imgDet = new ImageDetails();
             imgDet.randomise();
 
+            //*************** Write to CSV file ********************
 
+            FileOutputStream out; // declare a file output object
+            PrintStream p; // declare a print stream object
 
+            try
+            {
+                // Create a new file output stream
+                // connected to "myfile.txt"
+                out = new FileOutputStream("myfile.txt");
 
-                //**************************************OUTPUT TO SCREEN ***************************************
+                // Connect print stream to the output stream
+                p = new PrintStream( out );
 
-
-                System.out.print(dln[randNumDln]+ "," + issueNum+ "," + Title+ "," + firstName+ "," + mddleName+ "," + lastName[randNumLn]+ "," + DoB.toString()+ "," + verificationLevelBirthDateCode[randNumVerifLvl]
-                        + "," +  verificationLevelBirthDateName[randNumVerifLvl]+ "," +  gender+ "," + birthPlace[randNumPoB]+ "," + countryCode[randNumPoB]+ "," + countryInternalName[randNumPoB]+ "," + 
-                        countryInternalCode[randNumPoB]+ "," + line1 + "," + line2 + "," + posttown + "," + postcode+ "," + Country[randNumVerifLvl]+ "," + langcode[randNumVerifLvl]+ "," + 
+                p.println (dln[randNumDln]+ "," + issueNum+ "," + Title+ "," + firstName+ "," + mddleName+ "," + lastName[randNumLn]+ "," + DoB.toString()+ "," + verificationLevelBirthDateCode[randNumVerifLvl]
+                        + "," +  verificationLevelBirthDateName[randNumVerifLvl]+ "," +  gender+ "," + birthPlace[randNumPoB]+ "," + countryCode[randNumPoB]+ "," + countryInternalName[randNumPoB]+ "," +
+                        countryInternalCode[randNumPoB]+ "," + line1 + "," + line2 + "," + posttown + "," + postcode+ "," + Country[randNumVerifLvl]+ "," + langcode[randNumVerifLvl]+ "," +
                         (organDonation == 0 ? "Y" : "N")+ "," + pafKey+ "," + orgName+ "," + tfare + "," +  dtfare + "," +  ddtfare + "," + dLocality + "," +  ddLocality+ "," +
                         addressvalidFrom+ "," + addressvalidTo+ "," + imgDet.getIsPhotoCard()+ "," + imgDet.getImageFormat() + "," + UUIDP1 + "-" + UUIDP2 + "-" + UUIDP3 + "-" + UUDIP4 + "-" + UUIDP5 + UUIDP6
                         + "," + imgDet.getImageOrigin()  + "," + imgDet.getImageCaptureDate() + "," + imgDet.getImageValidFrom() + "," + imgDet.getImageValidTo());
 
                 if (randNumMilitary == 0) {   // IF statement for military address if random No = 0 print military address
-                System.out.print(militaryAddress.getPoBox()+ "," +  militaryAddress.getmBarracks()+ "," + militaryAddress.getmBFPONumber() + "," +
-                        militaryAddress.getmRank() + "," +  militaryAddress.getmRegiment() + "," +  militaryAddress.getmServiceNumber() + "," +
-                        militaryAddress.getmUnit() + "," + militaryAddress.getType());
-               }
+                    p.print(militaryAddress.getPoBox()+ "," +  militaryAddress.getmBarracks()+ "," + militaryAddress.getmBFPONumber() + "," +
+                            militaryAddress.getmRank() + "," +  militaryAddress.getmRegiment() + "," +  militaryAddress.getmServiceNumber() + "," +
+                            militaryAddress.getmUnit() + "," + militaryAddress.getType());
+                }
 
                 if ((randNumProv == 4) || ( randNumProv == 6)) {    //  IF Statement for CPC if Cat C or D held in entitlements
-                           System.out.print(certProffComp.getCreatingReasonCode() + "," + certProffComp.getUpdateReason() + "," + certProffComp.getRecordvalidFrom() + ","
-                                + certProffComp.getRecordvalidTo() + "," + certProffComp.getLGVValidFrom() + "," + certProffComp.getPCVValidFrom() + "," + certProffComp.getPCVValidTo() + "," );
+                    p.print(certProffComp.getCreatingReasonCode() + "," + certProffComp.getUpdateReason() + "," + certProffComp.getRecordvalidFrom() + ","
+                            + certProffComp.getRecordvalidTo() + "," + certProffComp.getLGVValidFrom() + "," + certProffComp.getPCVValidFrom() + "," + certProffComp.getPCVValidTo() + "," );
                 }
 
 
-            if (randNumDln == 0){
-                System.out.print(EndorseDetails.getEndorseID() + "," + EndorseDetails.getDisqualified() + "," + EndorseDetails.getEndorsCode() + "," + EndorseDetails.getEndorseID() + ","
-                + EndorseDetails.getConvCourt() + "," + EndorseDetails.getOffenceDate() + "," +  EndorseDetails.getOffenceDate() + "," + EndorseDetails.getExpiresDate() + "," + EndorseDetails.getRemoved() + "," +
-                 EndorseDetails.getConviction() + "," + EndorseDetails.getSentencing() + "," + EndorseDetails.getFineAmount() + "," + EndorseDetails.getFineCurrency() + "," + EndorseDetails.getNumOfPoints()
-                        + "," + EndorseDetails.getAlcLvl() + "," + EndorseDetails.getAlcoholTestType() + "," + EndorseDetails.getSentCourt() + "," + EndorseDetails.getCustodialPeriod() + ",");
-            }
+                if (randNumDln == 0){
+                    p.print(EndorseDetails.getEndorseID() + "," + EndorseDetails.getDisqualified() + "," + EndorseDetails.getEndorsCode() + "," + EndorseDetails.getEndorseID() + ","
+                            + EndorseDetails.getConvCourt() + "," + EndorseDetails.getOffenceDate() + "," +  EndorseDetails.getOffenceDate() + "," + EndorseDetails.getExpiresDate() + "," + EndorseDetails.getRemoved() + "," +
+                            EndorseDetails.getConviction() + "," + EndorseDetails.getSentencing() + "," + EndorseDetails.getFineAmount() + "," + EndorseDetails.getFineCurrency() + "," + EndorseDetails.getNumOfPoints()
+                            + "," + EndorseDetails.getAlcLvl() + "," + EndorseDetails.getAlcoholTestType() + "," + EndorseDetails.getSentCourt() + "," + EndorseDetails.getCustodialPeriod() + ",");
+                }
 
-            if (randNumDln == 0){
-                System.out.print(disqual.getDisqualified() + "," + disqual.getDttp() + "," + disqual.getDtetp() + "," + disqual.getRttp() + "," + disqual.getDisqDate() + "," + disqual.getDisqFromDate() + "," +
-                        disqual.getDisqToDate() + "," + disqual.getEndorsementID() + "," + disqual.getType() + "," + disqual.getDisqvalidFrom() + "," + disqual.getDisqvalidTo());
+                if (randNumDln == 0){
+                    p.print(disqual.getDisqualified() + "," + disqual.getDttp() + "," + disqual.getDtetp() + "," + disqual.getRttp() + "," + disqual.getDisqDate() + "," + disqual.getDisqFromDate() + "," +
+                            disqual.getDisqToDate() + "," + disqual.getEndorsementID() + "," + disqual.getType() + "," + disqual.getDisqvalidFrom() + "," + disqual.getDisqvalidTo());
 
-            }
+                }
 
-            if (randNumTp == 0){
+                if (randNumTp == 0){
 
-                driverStatCode = "Prov";
-                driverStatName = "Provisional";
-            }
+                    driverStatCode = "Prov";
+                    driverStatName = "Provisional";
+                    p.print(driverStatCode + "," + driverStatName);
+                }
 
 
                 else {
-                    System.out.print( driverStatCode + "," + driverStatName + ","  + "," + testPass[randNumTp] + "," + fullEntitlement[randNumFull] + "," + provEntitlement[randNumProv]
-                                        + "," + issueDate.toString() + "," + expiryDate.toString() +" , " + photoExpDate.toString() +" , " + driverFlags.getDuplicateOfLicence() +" , " +
-                    driverFlags.getExcessEndorsements() + "," + driverFlags.getExchangeOfLicence() + "," + driverFlags.getHigherFeePaid() + "," + driverFlags.getLifeFeePaid() + "," + driverFlags.getManual()
+                    p.print( driverStatCode + "," + driverStatName + ","  + "," + testPass[randNumTp] + "," + fullEntitlement[randNumFull] + "," + provEntitlement[randNumProv]
+                            + "," + issueDate.toString() + "," + expiryDate.toString() +" , " + photoExpDate.toString() +" , " + driverFlags.getDuplicateOfLicence() +" , " +
+                            driverFlags.getExcessEndorsements() + "," + driverFlags.getExchangeOfLicence() + "," + driverFlags.getHigherFeePaid() + "," + driverFlags.getLifeFeePaid() + "," + driverFlags.getManual()
                             + "," + driverFlags.getMedicalInvestigationRequiredForMedicalIssue() + "," + driverFlags.getOnYoungDriverScheme() + "," + driverFlags.getOrdinaryMedicalDeclerationMade()  + "," +
-                    driverFlags.getOrdinaryMedicalInvestigaitonInProgress() + "," + driverFlags.getOrdinaryMedicalPapersHled() + "," + driverFlags.getPhotoInvitationSent() + "," +
+                            driverFlags.getOrdinaryMedicalInvestigaitonInProgress() + "," + driverFlags.getOrdinaryMedicalPapersHled() + "," + driverFlags.getPhotoInvitationSent() + "," +
                             driverFlags.getReceivesMobilityallowance() + "," + driverFlags.getSightCorrectionRequired() + "," + driverFlags.getVocationalMedicalPapersHeld() + "," +
                             driverFlags.getVocationalMedicalInvestigationInProgress() + "," + driverFlags.getRestrictedAsSpecifiedInSecretaryOfStateNotice() + "," + driverFlags.getDriverFlagValidFrom() + "," +
-                    driverFlags.getDriverFlagValidTo());             /** Printing a record to screen */
+                            driverFlags.getDriverFlagValidTo());
+                }
 
-                            }
+
+                p.close();
+            }
+            catch (Exception e)
+            {
+                System.err.println ("Error writing to file");
+            }
 
 
 
